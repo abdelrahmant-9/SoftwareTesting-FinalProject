@@ -24,8 +24,8 @@ We aimed to build a reliable, tested, and user-friendly product using profession
 ## 👥 Team Members
 | Role | Name |
 |------|------|
-| 🧑‍💼 Team Leader  | **Abdelrahman Tarek Darwesh Abdelfattah** |
 | 👨‍🏫 Instructor   | **Dr. Hossam Khalifa** |
+| 🧑‍💼 Team Leader  | **Abdelrahman Tarek Darwesh Abdelfattah** |
 | 🔐 **Login**    | Alaa Mohamed Ahmed Ali |
 | 🏠 **Homepage** | Habiba Ragab Rady Mohamed |
 | 🛒 **Cart**     | Mohamed Akram Abdalkawy Almarakby – Abdelrahman Tarek Darwesh Abdelfattah |
