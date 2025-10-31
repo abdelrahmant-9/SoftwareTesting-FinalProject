@@ -20,7 +20,7 @@ We aimed to build a reliable, tested, and user-friendly product using profession
 - Apply both manual and automated testing techniques.
 
 ---
-
+<div align="center">
 ## 👥 Team Members
 | Role | Name |
 |------|------|
@@ -31,7 +31,7 @@ We aimed to build a reliable, tested, and user-friendly product using profession
 | 🛒 **Cart**     | Mohamed Akram Abdalkawy Almarakby – Abdelrahman Tarek Darwesh Abdelfattah |
 | 💳 **Checkout** | Mahamed Yasser Mohamed Elgrwany |
 | 📂 **Sidebar**  | Mohamed Ayman Mohamed Selem |
-
+</div>
 ---
 
 ## 🛠️ Tools & Technologies
