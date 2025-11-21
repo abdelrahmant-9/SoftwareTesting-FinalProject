@@ -21,7 +21,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Standar {
+public class Standar_user {
     private boolean IsElementPresent(By by) {
         try {
             driver.findElement(by);
@@ -271,3 +271,4 @@ public class Standar {
         driver.close();
     }
 }
+
