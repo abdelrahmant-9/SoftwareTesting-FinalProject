@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class newone {
+public class Login {
 WebDriver driver = new ChromeDriver();
     public void slowType(WebElement element, String text, int delay) throws InterruptedException {
         for(char letter : text.toCharArray()) {
@@ -104,4 +104,5 @@ WebDriver driver = new ChromeDriver();
      driver.quit();
     }
 }
+
 
