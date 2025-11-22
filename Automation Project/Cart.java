@@ -25,7 +25,6 @@ public class Cart {
         options.setExperimentalOption("prefs", prefs);
         options.addArguments(new String[]{"--disable-save-password-bubble"});
         options.addArguments(new String[]{"--disable-notifications"});
-        options.addArguments(new String[]{"--disable-infobars"});
         this.driver = new ChromeDriver(options);
         this.driver.manage().window().maximize();
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3L));
@@ -150,4 +149,5 @@ public class Cart {
         Thread.sleep(2000L);
     }
 }
+
 
