@@ -46,7 +46,7 @@ public class Cart {
     @Test(
             priority = 2
     )
-    public void VerifyCartBadgeCounterFlow() throws InterruptedException {
+    public void CartBadgeCounter() throws InterruptedException {
         this.slowClick(By.cssSelector("[data-test='add-to-cart-sauce-labs-backpack']"));
         this.slowClick(By.cssSelector("[data-test='add-to-cart-sauce-labs-bike-light']"));
         this.slowClick(By.cssSelector("[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"));
@@ -74,7 +74,7 @@ public class Cart {
     @Test(
             priority = 7
     )
-    public void VerifyButtonsInCart() {
+    public void ButtonsInCart() {
         Assert.assertTrue(this.driver.findElement(By.cssSelector("[data-test='remove-sauce-labs-backpack']")).isDisplayed());
         Assert.assertTrue(this.driver.findElement(By.cssSelector("[data-test='continue-shopping']")).isDisplayed());
         Assert.assertTrue(this.driver.findElement(By.cssSelector("[data-test='checkout']")).isDisplayed());
@@ -83,7 +83,7 @@ public class Cart {
     @Test(
             priority = 8
     )
-    public void ContinueShoppingFlow() throws InterruptedException {
+    public void ContinueShopping() throws InterruptedException {
         this.slowClick(By.cssSelector("[data-test='continue-shopping']"));
         Assert.assertTrue(this.driver.getCurrentUrl().contains("inventory.html"));
         this.waitSlow();
@@ -94,7 +94,7 @@ public class Cart {
     @Test(
             priority = 9
     )
-    public void CheckoutCancelFlow() throws InterruptedException {
+    public void Checkout() throws InterruptedException {
         this.slowClick(By.cssSelector("[data-test='checkout']"));
         this.waitSlow();
         Assert.assertTrue(this.driver.findElement(By.cssSelector("[data-test='cancel']")).isDisplayed());
@@ -106,7 +106,7 @@ public class Cart {
     @Test(
             priority = 10
     )
-    public void ProductDescriptionFlow() throws InterruptedException {
+    public void ProductDescription() throws InterruptedException {
         this.slowClick(By.cssSelector("[data-test='inventory-item-name']"));
         this.waitSlow();
         Assert.assertTrue(this.driver.findElement(By.cssSelector("[data-test='back-to-products']")).isDisplayed());
@@ -118,7 +118,7 @@ public class Cart {
     @Test(
             priority = 11
     )
-    public void FinalRemoveProduct() throws InterruptedException {
+    public void RemoveProduct() throws InterruptedException {
         this.slowClick(By.cssSelector("[data-test='shopping-cart-link']"));
         this.waitSlow();
         this.slowClick(By.cssSelector("[data-test='remove-sauce-labs-backpack']"));
@@ -150,3 +150,4 @@ public class Cart {
         Thread.sleep(2000L);
     }
 }
+
