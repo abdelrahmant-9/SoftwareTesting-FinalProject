@@ -51,8 +51,6 @@ public class StandardUser {
         driver.findElement(By.id("login-button")).click();
     }
 
-    // ================= CART TESTS WITHOUT SIDEBAR =================
-
     @Test
     public void AddSingleItemToCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
