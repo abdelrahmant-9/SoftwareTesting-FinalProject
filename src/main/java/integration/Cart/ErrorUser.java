@@ -1,4 +1,4 @@
-package ntegration.Cart;
+package integration.Cart;
 
 public class ErrorUser {
 }
