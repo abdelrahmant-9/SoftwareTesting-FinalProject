@@ -1,114 +1,137 @@
 package integration.Cart;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
-import org.testng.Assert;
-import org.testng.annotations.*;
 
 public class StandardUser {
 
     WebDriver driver;
 
-    @BeforeClass
-    public void setup() {
+    private boolean isElementPresent(By by){
+        try{
+            driver.findElement(by);
+            return true;
+        }catch (NoSuchElementException e){
+            return false;
+        }
+    }
+
+    @BeforeMethod
+    public void openBrowser(){
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
+        prefs.put("profile.password_manager_leak_detection", false);
+        prefs.put("profile.credentials_enable_autosignin", false);
+        prefs.put("password_manager_enabled", false);
         options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--disable-features=PasswordManagerEnabled");
+        options.addArguments("--disable-features=PasswordLeakDetection");
+        options.addArguments("--disable-features=SafeBrowsingSecurityToken");
+        options.addArguments("--disable-features=SafetyTipUI");
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.get("https://www.saucedemo.com/");
+        driver.navigate().to("https://www.saucedemo.com/");
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
     }
 
-    // 1️⃣ Login
-    @Test(priority = 1)
-    public void loginSuccessfully() {
-        sendKeys(By.cssSelector("[data-test='username']"), "standard_user");
-        sendKeys(By.cssSelector("[data-test='password']"), "secret_sauce");
-        click(By.cssSelector("[data-test='login-button']"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "Login failed!");
+    // ================= CART TESTS WITHOUT SIDEBAR =================
+
+    @Test
+    public void AddSingleItemToCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("shopping_cart_container")).click();
+        WebElement item = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.linkText("Sauce Labs Bike Light")));
+        Assert.assertTrue(item.isDisplayed());
     }
 
-    // 2️⃣ Add single item
-    @Test(priority = 2, dependsOnMethods = "loginSuccessfully")
-    public void addSingleItemToCart() {
-        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-backpack']"));
-        Assert.assertEquals(getText(By.cssSelector(".shopping_cart_badge")), "1");
+    @Test
+    public void AddMultipleItemsToCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("shopping_cart_container")).click();
+
+        WebElement item1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.linkText("Sauce Labs Bike Light")));
+        WebElement item2 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.linkText("Sauce Labs Bolt T-Shirt")));
+
+        Assert.assertTrue(item1.isDisplayed());
+        Assert.assertTrue(item2.isDisplayed());
     }
 
-    // 3️⃣ Add multiple items + remove one
-    @Test(priority = 3, dependsOnMethods = "addSingleItemToCart")
-    public void addMultipleItemsAndRemoveOne() {
-        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-bike-light']"));
-        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"));
-        Assert.assertEquals(getText(By.cssSelector(".shopping_cart_badge")), "3");
+    @Test
+    public void RemoveItemFromCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("shopping_cart_container")).click();
+        driver.findElement(By.id("remove-sauce-labs-backpack")).click();
 
-        click(By.cssSelector("[data-test='remove-sauce-labs-bike-light']"));
-        Assert.assertEquals(getText(By.cssSelector(".shopping_cart_badge")), "2");
+        boolean exists = isElementPresent(By.linkText("Sauce Labs Backpack"));
+        Assert.assertFalse(exists);
     }
 
-    // 4️⃣ Navigate to cart
-    @Test(priority = 4)
-    public void navigateToCart() {
-        click(By.cssSelector(".shopping_cart_link"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("cart.html"));
+    @Test
+    public void CartBadgeCount(){
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+
+        WebElement badge = driver.findElement(By.className("shopping_cart_badge"));
+        Assert.assertEquals(badge.getText(), "2");
     }
 
-    // 5️⃣ Proceed to checkout with valid data
-    @Test(priority = 5, dependsOnMethods = "navigateToCart")
-    public void completeCheckoutSuccessfully() {
-        click(By.cssSelector("[data-test='checkout']"));
-        sendKeys(By.cssSelector("[data-test='firstName']"), "QA");
-        sendKeys(By.cssSelector("[data-test='lastName']"), "Tester");
-        sendKeys(By.cssSelector("[data-test='postalCode']"), "12345");
-        click(By.cssSelector("[data-test='continue']"));
+    @Test
+    public void GoToCheckoutFromCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("shopping_cart_container")).click();
+        driver.findElement(By.id("checkout")).click();
 
-        Assert.assertTrue(getText(By.cssSelector(".summary_total_label")).contains("Total"));
-        click(By.cssSelector("[data-test='finish']"));
-        Assert.assertTrue(getText(By.cssSelector(".complete-header")).contains("THANK YOU"));
+        WebElement checkoutTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.className("title")));
+
+        Assert.assertEquals(checkoutTitle.getText(), "Checkout: Your Information");
     }
 
-    // 6️⃣ Checkout with missing data
-    @Test(priority = 6)
-    public void checkoutWithMissingData() {
-        driver.get("https://www.saucedemo.com/inventory.html");
-        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-fleece-jacket']"));
-        click(By.cssSelector(".shopping_cart_link"));
-        click(By.cssSelector("[data-test='checkout']"));
-        click(By.cssSelector("[data-test='continue']"));
-        Assert.assertTrue(getText(By.cssSelector("[data-test='error']")).contains("Error"));
+    @Test
+    public void ContinueShoppingFromCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("shopping_cart_container")).click();
+        driver.findElement(By.id("continue-shopping")).click();
+
+        wait.until(ExpectedConditions.urlContains("inventory.html"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"));
     }
 
-    // 7️⃣ Logout scenario
-    @Test(priority = 7)
-    public void logoutSuccessfully() {
-        click(By.id("react-burger-menu-btn"));
-        click(By.id("logout_sidebar_link"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("saucedemo.com"));
+    @Test
+    public void CartIsEmptyInitially(){
+        boolean badgeExists = isElementPresent(By.className("shopping_cart_badge"));
+        Assert.assertFalse(badgeExists);
     }
 
-    @AfterClass
-    public void tearDown() {
+    @AfterMethod
+    public void closeBrowser() throws InterruptedException {
+        Thread.sleep(2000);
         driver.quit();
-    }
-
-    // 🔹 Helper methods
-    private void click(By locator) {
-        driver.findElement(locator).click();
-    }
-
-    private void sendKeys(By locator, String text) {
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(text);
-    }
-
-    private String getText(By locator) {
-        return driver.findElement(locator).getText();
     }
 }
