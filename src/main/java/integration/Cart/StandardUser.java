@@ -2,18 +2,11 @@ package integration.Cart;
 
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.*;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class StandardUser {
 
@@ -29,112 +22,75 @@ public class StandardUser {
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://www.saucedemo.com/");
     }
 
-    // 1 - Login
+    // 1️⃣ Login
     @Test(priority = 1)
-    public void loginSuccessfully() throws InterruptedException {
-        slowSendKeys(By.cssSelector("[data-test='username']"), "standard_user");
-        slowSendKeys(By.cssSelector("[data-test='password']"), "secret_sauce");
-        slowClick(By.cssSelector("[data-test='login-button']"));
-
-        Assert.assertTrue(driver.getCurrentUrl().contains("inventory"));
+    public void loginSuccessfully() {
+        sendKeys(By.cssSelector("[data-test='username']"), "standard_user");
+        sendKeys(By.cssSelector("[data-test='password']"), "secret_sauce");
+        click(By.cssSelector("[data-test='login-button']"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"), "Login failed!");
     }
 
-    // 2 - Verify Home Loaded
-    @Test(priority = 2)
-    public void verifyHomePageLoaded() {
-        Assert.assertTrue(driver.findElement(By.className("inventory_list")).isDisplayed());
+    // 2️⃣ Add single item
+    @Test(priority = 2, dependsOnMethods = "loginSuccessfully")
+    public void addSingleItemToCart() {
+        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-backpack']"));
+        Assert.assertEquals(getText(By.cssSelector(".shopping_cart_badge")), "1");
     }
 
-    // 3 - Add Products
-    @Test(priority = 3)
-    public void addProductsToCart() throws InterruptedException {
-        slowClick(By.id("add-to-cart-sauce-labs-backpack"));
-        slowClick(By.id("add-to-cart-sauce-labs-bike-light"));
+    // 3️⃣ Add multiple items + remove one
+    @Test(priority = 3, dependsOnMethods = "addSingleItemToCart")
+    public void addMultipleItemsAndRemoveOne() {
+        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-bike-light']"));
+        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-bolt-t-shirt']"));
+        Assert.assertEquals(getText(By.cssSelector(".shopping_cart_badge")), "3");
+
+        click(By.cssSelector("[data-test='remove-sauce-labs-bike-light']"));
+        Assert.assertEquals(getText(By.cssSelector(".shopping_cart_badge")), "2");
     }
 
-    // 4 - Verify Badge Count
+    // 4️⃣ Navigate to cart
     @Test(priority = 4)
-    public void verifyCartBadgeCount() {
-        String badge = driver.findElement(By.className("shopping_cart_badge")).getText();
-        Assert.assertEquals(badge, "2");
-    }
-
-    // 5 - Open Cart
-    @Test(priority = 5)
-    public void openCartPage() throws InterruptedException {
-        slowClick(By.className("shopping_cart_link"));
+    public void navigateToCart() {
+        click(By.cssSelector(".shopping_cart_link"));
         Assert.assertTrue(driver.getCurrentUrl().contains("cart.html"));
     }
 
-    // 6 - Verify Cart Items Details
+    // 5️⃣ Proceed to checkout with valid data
+    @Test(priority = 5, dependsOnMethods = "navigateToCart")
+    public void completeCheckoutSuccessfully() {
+        click(By.cssSelector("[data-test='checkout']"));
+        sendKeys(By.cssSelector("[data-test='firstName']"), "QA");
+        sendKeys(By.cssSelector("[data-test='lastName']"), "Tester");
+        sendKeys(By.cssSelector("[data-test='postalCode']"), "12345");
+        click(By.cssSelector("[data-test='continue']"));
+
+        Assert.assertTrue(getText(By.cssSelector(".summary_total_label")).contains("Total"));
+        click(By.cssSelector("[data-test='finish']"));
+        Assert.assertTrue(getText(By.cssSelector(".complete-header")).contains("THANK YOU"));
+    }
+
+    // 6️⃣ Checkout with missing data
     @Test(priority = 6)
-    public void verifyCartItemsDetails() {
-        List<WebElement> items = driver.findElements(By.className("cart_item"));
-        Assert.assertEquals(items.size(), 2);
+    public void checkoutWithMissingData() {
+        driver.get("https://www.saucedemo.com/inventory.html");
+        click(By.cssSelector("[data-test='add-to-cart-sauce-labs-fleece-jacket']"));
+        click(By.cssSelector(".shopping_cart_link"));
+        click(By.cssSelector("[data-test='checkout']"));
+        click(By.cssSelector("[data-test='continue']"));
+        Assert.assertTrue(getText(By.cssSelector("[data-test='error']")).contains("Error"));
     }
 
-    // 7 - Verify Cart Buttons
+    // 7️⃣ Logout scenario
     @Test(priority = 7)
-    public void verifyCartButtons() {
-        Assert.assertTrue(driver.findElement(By.id("checkout")).isDisplayed());
-        Assert.assertTrue(driver.findElement(By.id("continue-shopping")).isDisplayed());
-    }
-
-    // 8 - Continue Shopping
-    @Test(priority = 8)
-    public void continueShoppingFlow() throws InterruptedException {
-        slowClick(By.id("continue-shopping"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("inventory"));
-    }
-
-    // 9 - Verify Products Still Exist
-    @Test(priority = 9)
-    public void verifyCartStillHasItems() {
-        String badge = driver.findElement(By.className("shopping_cart_badge")).getText();
-        Assert.assertEquals(badge, "2");
-    }
-
-    // 10 - Open Product Details
-    @Test(priority = 10)
-    public void openProductDetails() throws InterruptedException {
-        slowClick(By.className("inventory_item_name"));
-        Assert.assertTrue(driver.findElement(By.id("back-to-products")).isDisplayed());
-    }
-
-    // 11 - Back To Products
-    @Test(priority = 11)
-    public void backToCart() throws InterruptedException {
-        slowClick(By.id("back-to-products"));
-        slowClick(By.className("shopping_cart_link"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("cart"));
-    }
-
-    // 12 - Go To Checkout
-    @Test(priority = 12)
-    public void proceedToCheckout() throws InterruptedException {
-        slowClick(By.id("checkout"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-one"));
-    }
-
-    // 13 - Back To Cart Again
-    @Test(priority = 13)
-    public void returnToCartFromCheckout() throws InterruptedException {
-        slowClick(By.id("cancel"));
-        Assert.assertTrue(driver.getCurrentUrl().contains("cart"));
-    }
-
-    // 14 - Remove Product (آخر خطوة)
-    @Test(priority = 14)
-    public void removeProductAndVerifyEmptyCart() throws InterruptedException {
-        slowClick(By.id("remove-sauce-labs-backpack"));
-        slowClick(By.id("remove-sauce-labs-bike-light"));
-
-        boolean empty = driver.findElements(By.className("cart_item")).isEmpty();
-        Assert.assertTrue(empty);
+    public void logoutSuccessfully() {
+        click(By.id("react-burger-menu-btn"));
+        click(By.id("logout_sidebar_link"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("saucedemo.com"));
     }
 
     @AfterClass
@@ -142,17 +98,17 @@ public class StandardUser {
         driver.quit();
     }
 
-    // -------- Helper Methods --------
-
-    public void slowClick(By locator) throws InterruptedException {
+    // 🔹 Helper methods
+    private void click(By locator) {
         driver.findElement(locator).click();
-        Thread.sleep(1000);
     }
 
-    public void slowSendKeys(By locator, String text) throws InterruptedException {
-        for(char c : text.toCharArray()) {
-            driver.findElement(locator).sendKeys(String.valueOf(c));
-            Thread.sleep(100);
-        }
+    private void sendKeys(By locator, String text) {
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(text);
+    }
+
+    private String getText(By locator) {
+        return driver.findElement(locator).getText();
     }
 }
