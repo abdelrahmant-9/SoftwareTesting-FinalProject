@@ -1,4 +1,4 @@
-package HomePage;
+package E2E;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
