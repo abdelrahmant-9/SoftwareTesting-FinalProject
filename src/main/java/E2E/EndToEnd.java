@@ -34,7 +34,6 @@ public class EndToEnd {
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
-
     //verify that checkout process complete with username: standard_user
     @Test (priority = 1 )
     public void checkout_process_complete() throws InterruptedException {
@@ -63,7 +62,6 @@ public class EndToEnd {
        String checkout_URL = driver.getCurrentUrl();
        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
-
 
     //verify that checkout process complete with Removing products from cart page username: standard_user
     @Test (priority = 2)
@@ -103,7 +101,6 @@ public class EndToEnd {
         String checkout_URL = driver.getCurrentUrl();
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
-
 
     //verify that checkout process complete with Removing products from Description page username: standard_user
     @Test (priority = 3)
@@ -158,7 +155,6 @@ public class EndToEnd {
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
 
-
     //verify that checkout process don't complete with empty cart username: standard_user
     @Test (priority = 4)
     public void empty_cart() throws InterruptedException {
@@ -185,7 +181,6 @@ public class EndToEnd {
         String checkout_URL = driver.getCurrentUrl();
         Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
-
 
     //verify that checkout process don't complete with entering only spaces at checkout fields username: standard_user
     @Test (priority = 5)
@@ -218,7 +213,6 @@ public class EndToEnd {
         Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
 
-
     //verify that checkout process don't complete with empty checkout fields username: standard_user
     @Test (priority = 6)
     public void empty_fields() throws InterruptedException {
@@ -247,7 +241,6 @@ public class EndToEnd {
         String checkout_URL = driver.getCurrentUrl();
         Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
-
 
     //verify that checkout process complete with Reset App State username: standard_user
     @Test (priority = 7)
@@ -287,7 +280,6 @@ public class EndToEnd {
         driver.findElement(By.id("finish")).click();
     }
 
-
     //verify that checkout process complete with username: locked_out_user
     @Test (priority =8)
     public void locked_out_user() throws InterruptedException {
@@ -316,7 +308,6 @@ public class EndToEnd {
             String checkout_URL = driver.getCurrentUrl();
             Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
         }
-
 
     //verify that checkout process complete with username: problem_user
     @Test (priority =9)
@@ -347,7 +338,6 @@ public class EndToEnd {
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
 
-
     //verify that checkout process complete with username: performance_glitch_user
     @Test (priority =10)
     public void performance_glitch_user() throws InterruptedException {
@@ -376,7 +366,6 @@ public class EndToEnd {
         String checkout_URL = driver.getCurrentUrl();
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
-
 
     //verify that checkout process complete with username: error_user
     @Test (priority =11)
@@ -407,7 +396,6 @@ public class EndToEnd {
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
 
-
     //verify that checkout process complete with username: visual_user
     @Test (priority =12)
     public void visual_user() throws InterruptedException {
@@ -436,7 +424,6 @@ public class EndToEnd {
         String checkout_URL = driver.getCurrentUrl();
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
-
 
     @AfterMethod
     public void closeBrowser() throws InterruptedException {
