@@ -132,7 +132,7 @@ public class E2E {
         System.out.println("ViewProductDescription Result = " + result);
     }
 
-    @Test(priority = 3, groups = {"e2e"})
+    @Test(priority = 4, groups = {"e2e"})
     public void AddMoreProducts() {
         boolean result;
         try {
@@ -154,7 +154,7 @@ public class E2E {
         System.out.println("AddMoreProducts Result = " + result);
     }
 
-    @Test(priority = 4, groups = {"e2e"})
+    @Test(priority = 5, groups = {"e2e"})
     public void GoToCartAndValidateItems() {
         boolean result;
         try {
@@ -173,7 +173,7 @@ public class E2E {
         System.out.println("GoToCartAndValidateItems Result = " + result);
     }
 
-    @Test(priority = 5, groups = {"e2e"})
+    @Test(priority = 6, groups = {"e2e"})
     public void RemoveItemAndValidateCount() {
         boolean result;
         try {
@@ -190,7 +190,7 @@ public class E2E {
         System.out.println("RemoveItemAndValidateCount Result = " + result);
     }
 
-    @Test(priority = 6, groups = {"e2e"})
+    @Test(priority = 7, groups = {"e2e"})
     public void ProceedToCheckout() {
         boolean result;
         try {
@@ -205,7 +205,7 @@ public class E2E {
         System.out.println("ProceedToCheckout Result = " + result);
     }
 
-    @Test(priority = 7, groups = {"e2e"})
+    @Test(priority = 8, groups = {"e2e"})
     public void CompleteCheckout() {
         boolean result;
         try {
