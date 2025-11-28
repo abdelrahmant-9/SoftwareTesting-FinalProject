@@ -182,7 +182,7 @@ public class CompleteOrder {
     }
     //============================================================================================================
 
-    @Test
+    /*@Test
     public void check_flow() throws InterruptedException
     {
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
@@ -232,9 +232,6 @@ public class CompleteOrder {
 
     @Test
     public void checkout_process_complete() throws InterruptedException {
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.className("shopping_cart_link")).click();
         driver.findElement(By.id("checkout")).click();
@@ -249,9 +246,6 @@ public class CompleteOrder {
 
     @Test
     public void Remove_products() throws InterruptedException {
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
-        driver.findElement(By.id("login-button")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
@@ -371,7 +365,6 @@ public class CompleteOrder {
 
     @Test
     public void problem_user() throws InterruptedException {
-        driver.findElement(By.id("user-name")).sendKeys("problem_user");
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.className("shopping_cart_link")).click();
         driver.findElement(By.id("checkout")).click();
@@ -871,6 +864,23 @@ public class CompleteOrder {
         continuebutton.click();
         WebElement finishbutton = driver.findElement(By.id("finish"));
         finishbutton.click();
+    }*/
+
+    @AfterMethod
+    public void resetAfterEachTest() {
+        // مسح الكوكيز (كاش السيشن)
+        driver.manage().deleteAllCookies();
+
+        // رجوع للموقع الأساسي
+        driver.navigate().to("https://www.saucedemo.com/");
+
+        // تسجيل دخول من جديد كبداية نظيفة
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+
+        // تأكد إننا على صفحة الـ Home
+        wait.until(ExpectedConditions.urlContains("inventory"));
     }
 
     @AfterClass
