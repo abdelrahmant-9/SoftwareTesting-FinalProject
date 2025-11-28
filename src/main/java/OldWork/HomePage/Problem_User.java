@@ -38,6 +38,7 @@ public class Problem_User {
 
         driver = new ChromeDriver(options);
         driver.navigate().to("https://www.saucedemo.com/");
+        driver.manage().window().maximize();
         driver.findElement(By.id("user-name")).sendKeys("problem_user");
         Thread.sleep(1000);
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -131,23 +132,6 @@ public class Problem_User {
         Thread.sleep(1000);
     }
 
- /*   @Test(priority = 8)
-    public void verifyProductDetailsPages() throws InterruptedException {
-        List<WebElement> products = driver.findElements(By.className("inventory_item_name"));
-        for (int i = 0; i < products.size(); i++) {
-            driver.findElements(By.className("inventory_item_name")).get(i).click();
-            Thread.sleep(500);
-
-            Assert.assertFalse(driver.findElement(By.className("inventory_details_name")).getText().isEmpty());
-            Assert.assertFalse(driver.findElement(By.className("inventory_details_price")).getText().isEmpty());
-            Assert.assertFalse(driver.findElement(By.className("inventory_details_img")).getAttribute("src").isEmpty());
-            Assert.assertFalse(driver.findElement(By.className("inventory_details_desc")).getText().isEmpty());
-
-            driver.findElement(By.id("back-to-products")).click();
-            Thread.sleep(500);
-        }
-    }*/
-
     @Test(priority = 8)
     public void verifyCartQuantityUpdates() throws InterruptedException {
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
@@ -161,6 +145,33 @@ public class Problem_User {
     }
 
     @Test(priority = 9)
+    public void Z_A_sort() throws InterruptedException {
+        Select sort = new Select(driver.findElement(By.className("product_sort_container")));
+        sort.selectByVisibleText("Name (Z to A)");
+        Thread.sleep(1000);
+
+        List<WebElement> names = driver.findElements(By.className("inventory_item_name"));
+        for(int i = 0; i < names.size()-1; i++){
+            String current = names.get(i).getText();
+            String next = names.get(i+1).getText();
+            Assert.assertTrue(current.compareTo(next) > 0);
+        }
+    }
+
+    @Test(priority = 10)
+    public void A_Z_sort() throws InterruptedException {
+        Select sort = new Select(driver.findElement(By.className("product_sort_container")));
+        sort.selectByVisibleText("Name (A to Z)");
+        Thread.sleep(1000);
+
+        List<WebElement> names = driver.findElements(By.className("inventory_item_name"));
+        for(int i = 0; i < names.size()-1; i++){
+            String current = names.get(i).getText();
+            String next = names.get(i+1).getText();
+            Assert.assertTrue(current.compareTo(next) < 0);
+        }
+    }
+    @Test(priority = 11)
     public void verifySortingLowToHigh() throws InterruptedException {
         Select sort = new Select(driver.findElement(By.className("product_sort_container")));
         sort.selectByVisibleText("Price (low to high)");
@@ -174,7 +185,7 @@ public class Problem_User {
         }
     }
 
-    @Test(priority = 10)
+    @Test(priority = 12)
     public void verifySortingHighToLow() throws InterruptedException {
         Select sort = new Select(driver.findElement(By.className("product_sort_container")));
         sort.selectByVisibleText("Price (high to low)");
@@ -188,7 +199,7 @@ public class Problem_User {
         }
     }
 
-    @Test(priority = 11)
+    @Test(priority = 13)
     public void verifyNoDuplicateProducts() throws InterruptedException {
         List<WebElement> products = driver.findElements(By.className("inventory_item_name"));
         for (int i = 0; i < products.size(); i++) {
@@ -201,6 +212,72 @@ public class Problem_User {
         Thread.sleep(500);
     }
 
+
+    @Test(priority = 14)
+    public void Bike_light_checkName() throws  InterruptedException{
+        String item = driver.findElement(By.xpath("//*[@id=\"item_0_title_link\"]/div")).getText();
+        driver.findElement(By.xpath("//*[@id=\"item_0_title_link\"]/div")).click();
+        Thread.sleep(1000);
+
+        String product_name = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"))
+                .getText();
+        Assert.assertEquals(product_name, item);
+    }
+
+    @Test(priority = 15)
+    public void Backpack_checkName() throws  InterruptedException{
+        String item = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText();
+        driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).click();
+        Thread.sleep(1000);
+
+        String product_name = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"))
+                .getText();
+        Assert.assertEquals(product_name, item);
+    }
+
+    @Test(priority = 16)
+    public void   Bolt_T_Shirt_checkName() throws  InterruptedException{
+        String item = driver.findElement(By.xpath("//*[@id=\"item_1_title_link\"]/div")).getText();
+        driver.findElement(By.xpath("//*[@id=\"item_1_title_link\"]/div")).click();
+        Thread.sleep(1000);
+
+        String product_name = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"))
+                .getText();
+        Assert.assertEquals(product_name, item);
+    }
+
+    @Test(priority = 17)
+    public void   Fleece_Jacket_checkName() throws  InterruptedException{
+        String item = driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div")).getText();
+        driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div")).click();
+        Thread.sleep(1000);
+
+        String product_name = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"))
+                .getText();
+        Assert.assertEquals(product_name, item);
+    }
+
+    @Test(priority = 18)
+    public void   Onesie_checkName() throws  InterruptedException{
+        String item = driver.findElement(By.xpath("//*[@id=\"item_2_title_link\"]/div")).getText();
+        driver.findElement(By.xpath("//*[@id=\"item_2_title_link\"]/div")).click();
+        Thread.sleep(1000);
+
+        String product_name = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"))
+                .getText();
+        Assert.assertEquals(product_name, item);
+    }
+
+    @Test(priority = 19)
+    public void   Test_allTheThings_checkName() throws  InterruptedException{
+        String item = driver.findElement(By.xpath("//*[@id=\"item_3_title_link\"]/div")).getText();
+        driver.findElement(By.xpath("//*[@id=\"item_3_title_link\"]/div")).click();
+        Thread.sleep(1000);
+
+        String product_name = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"))
+                .getText();
+        Assert.assertEquals(product_name, item);
+    }
 
 
     @AfterMethod

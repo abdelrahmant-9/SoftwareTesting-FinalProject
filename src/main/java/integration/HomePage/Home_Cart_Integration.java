@@ -30,7 +30,15 @@ public class Home_Cart_Integration {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("profile.password_manager_leak_detection", false);
+        prefs.put("profile.credentials_enable_autosignin", false);
+        prefs.put("password_manager_enabled", false);
         options.setExperimentalOption("prefs", prefs);
+        options.addArguments("--disable-features=PasswordManagerEnabled");
+        options.addArguments("--disable-features=PasswordLeakDetection");
+        options.addArguments("--disable-features=SafeBrowsingSecurityToken");
+        options.addArguments("--disable-features=SafetyTipUI");
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
