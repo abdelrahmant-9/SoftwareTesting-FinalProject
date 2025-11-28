@@ -868,18 +868,11 @@ public class CompleteOrder {
 
     @AfterMethod
     public void resetAfterEachTest() {
-        // مسح الكوكيز (كاش السيشن)
         driver.manage().deleteAllCookies();
-
-        // رجوع للموقع الأساسي
         driver.navigate().to("https://www.saucedemo.com/");
-
-        // تسجيل دخول من جديد كبداية نظيفة
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
-
-        // تأكد إننا على صفحة الـ Home
         wait.until(ExpectedConditions.urlContains("inventory"));
     }
 
