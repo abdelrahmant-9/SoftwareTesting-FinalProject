@@ -67,17 +67,22 @@ public class E2E {
 
     @Test(priority = 1, groups = {"e2e"})
     public void CartShouldBeEmptyAtStart() {
+        boolean result;
         try {
             smallWait();
             boolean badgeExists = driver.findElements(By.className("shopping_cart_badge")).size() > 0;
             Assert.assertFalse(badgeExists);
-        } catch (Exception e) {
+            result = true;
+        } catch (AssertionError e) {
+            result = false;
             Assert.fail("CartShouldBeEmptyAtStart failed: " + e.getMessage());
         }
+        System.out.println("CartShouldBeEmptyAtStart Result = " + result);
     }
 
     @Test(priority = 2, groups = {"e2e"})
     public void AddFirstProduct() {
+        boolean result;
         try {
             smallWait();
             clickWhenReady(By.id("add-to-cart-sauce-labs-backpack"));
@@ -87,13 +92,17 @@ public class E2E {
             WebElement badge = driver.findElement(By.className("shopping_cart_badge"));
 
             Assert.assertEquals(badge.getText(), String.valueOf(expectedCartCount));
-        } catch (Exception e) {
+            result = true;
+        } catch (AssertionError e) {
+            result = false;
             Assert.fail("AddFirstProduct failed: " + e.getMessage());
         }
+        System.out.println("AddFirstProduct Result = " + result);
     }
 
     @Test(priority = 3, groups = {"e2e"})
     public void AddMoreProducts() {
+        boolean result;
         try {
             smallWait();
             clickWhenReady(By.id("add-to-cart-sauce-labs-bike-light"));
@@ -103,82 +112,85 @@ public class E2E {
             clickWhenReady(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
             expectedCartCount++;
 
-            waitForElement(By.className("shopping_cart_badge"));
             WebElement badge = driver.findElement(By.className("shopping_cart_badge"));
-
             Assert.assertEquals(badge.getText(), String.valueOf(expectedCartCount));
-        } catch (Exception e) {
+            result = true;
+        } catch (AssertionError e) {
+            result = false;
             Assert.fail("AddMoreProducts failed: " + e.getMessage());
         }
+        System.out.println("AddMoreProducts Result = " + result);
     }
 
     @Test(priority = 4, groups = {"e2e"})
     public void GoToCartAndValidateItems() {
+        boolean result;
         try {
-            smallWait();
             clickWhenReady(By.className("shopping_cart_link"));
-
             waitForElement(By.linkText("Sauce Labs Backpack"));
+
             Assert.assertTrue(driver.findElement(By.linkText("Sauce Labs Backpack")).isDisplayed());
             Assert.assertTrue(driver.findElement(By.linkText("Sauce Labs Bike Light")).isDisplayed());
             Assert.assertTrue(driver.findElement(By.linkText("Sauce Labs Bolt T-Shirt")).isDisplayed());
-        } catch (Exception e) {
+
+            result = true;
+        } catch (AssertionError e) {
+            result = false;
             Assert.fail("GoToCartAndValidateItems failed: " + e.getMessage());
         }
+        System.out.println("GoToCartAndValidateItems Result = " + result);
     }
 
     @Test(priority = 5, groups = {"e2e"})
     public void RemoveItemAndValidateCount() {
+        boolean result;
         try {
-            smallWait();
             clickWhenReady(By.id("remove-sauce-labs-bike-light"));
             expectedCartCount--;
 
-            waitForElement(By.className("shopping_cart_badge"));
             WebElement badge = driver.findElement(By.className("shopping_cart_badge"));
-
             Assert.assertEquals(badge.getText(), String.valueOf(expectedCartCount));
-        } catch (Exception e) {
+            result = true;
+        } catch (AssertionError e) {
+            result = false;
             Assert.fail("RemoveItemAndValidateCount failed: " + e.getMessage());
         }
+        System.out.println("RemoveItemAndValidateCount Result = " + result);
     }
 
     @Test(priority = 6, groups = {"e2e"})
     public void ProceedToCheckout() {
+        boolean result;
         try {
-            smallWait();
-            waitForElement(By.id("checkout"));
             clickWhenReady(By.id("checkout"));
-
-            waitForElement(By.className("title"));
             WebElement title = driver.findElement(By.className("title"));
-
             Assert.assertEquals(title.getText(), "Checkout: Your Information");
-        } catch (Exception e) {
+            result = true;
+        } catch (AssertionError e) {
+            result = false;
             Assert.fail("ProceedToCheckout failed: " + e.getMessage());
         }
+        System.out.println("ProceedToCheckout Result = " + result);
     }
 
     @Test(priority = 7, groups = {"e2e"})
     public void CompleteCheckout() {
+        boolean result;
         try {
-            smallWait();
-            waitForElement(By.id("first-name"));
             driver.findElement(By.id("first-name")).sendKeys("Abdelrahman");
-
             driver.findElement(By.id("last-name")).sendKeys("Tarek");
             driver.findElement(By.id("postal-code")).sendKeys("35111");
 
-            smallWait();
             clickWhenReady(By.id("continue"));
-
-            smallWait();
             clickWhenReady(By.id("finish"));
 
             Assert.assertTrue(driver.getCurrentUrl().contains("checkout-complete"));
-        } catch (Exception e) {
+            result = true;
+        } catch (AssertionError e) {
+            result = false;
             Assert.fail("CompleteCheckout failed: " + e.getMessage());
         }
+        System.out.println("CompleteCheckout Result = " + result);
     }
 
     @AfterClass
