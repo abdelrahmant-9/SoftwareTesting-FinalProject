@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -17,41 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 public class CompleteOrder {
+    WebDriver driver;
+    WebDriverWait wait;
 
-    // Constants
-    private static final String BASE_URL = "https://www.saucedemo.com/";
-    private static final String INVENTORY_URL = "https://www.saucedemo.com/inventory.html";
-    private static final String CHECKOUT_COMPLETE_URL = "https://www.saucedemo.com/checkout-complete.html";
-    private static final String STANDARD_USER = "standard_user";
-    private static final String LOCKED_OUT_USER = "locked_out_user";
-    private static final String PROBLEM_USER = "problem_user";
-    private static final String PERFORMANCE_GLITCH_USER = "performance_glitch_user";
-    private static final String ERROR_USER = "error_user";
-    private static final String VISUAL_USER = "visual_user";
-    private static final String PASSWORD = "secret_sauce";
-    private static final int DEFAULT_TIMEOUT = 10;
-
-    private WebDriver driver;
-    private WebDriverWait wait;
-
-    @BeforeMethod
-    public void setup() {
-        driver = createChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT));
-        driver.manage().window().maximize();
-        driver.navigate().to(BASE_URL);
-    }
-
-    @AfterMethod
-    public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
-    // ==================== HELPER METHODS ====================
-
-    private WebDriver createChromeDriver() {
+    @BeforeClass
+    public void  openBrowser(){
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
@@ -64,463 +35,847 @@ public class CompleteOrder {
         options.addArguments("--disable-features=PasswordLeakDetection");
         options.addArguments("--disable-features=SafeBrowsingSecurityToken");
         options.addArguments("--disable-features=SafetyTipUI");
-        return new ChromeDriver(options);
-    }
-
-    private void login(String username, String password) {
-        driver.findElement(By.id("user-name")).sendKeys(username);
-        driver.findElement(By.id("password")).sendKeys(password);
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.navigate().to("https://www.saucedemo.com/");
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
     }
 
-    private void addProductToCart(String productId) {
-        WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.id(productId)));
-        addButton.click();
+    public void slowType(WebElement element, String text, int delay) throws InterruptedException {
+        element.clear();
+        for (char c : text.toCharArray()) {
+            element.sendKeys(String.valueOf(c));
+            Thread.sleep(delay);
+        }
     }
 
-    private void removeProductFromCart(String productId) {
-        WebElement removeButton = wait.until(ExpectedConditions.elementToBeClickable(By.id(productId)));
-        removeButton.click();
+    @Test
+    public void AddProduct(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "3");
     }
 
-    private void goToCart() {
-        WebElement cartIcon = wait.until(ExpectedConditions.elementToBeClickable(
-                By.className("shopping_cart_link")));
-        cartIcon.click();
+    @Test
+    public void ViewProduct(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement Jacket_Befor =   driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div"));
+        String TBefore =   Jacket_Befor.getText();
+        Jacket_Befor.click();
+        WebElement Jacket_After = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]")));
+        String TAfter =   Jacket_After.getText();
+        WebElement back = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
+        back.click();
+        Assert.assertEquals(TAfter,TBefore);
     }
 
-    private String getCartCount() {
-        WebElement cartBadge = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
-        return cartBadge.getText();
-    }
-
-    private void fillCheckoutInformation(String firstName, String lastName, String postalCode) {
-        driver.findElement(By.id("first-name")).sendKeys(firstName);
-        driver.findElement(By.id("last-name")).sendKeys(lastName);
-        driver.findElement(By.id("postal-code")).sendKeys(postalCode);
-        WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("continue")));
-        continueButton.click();
-    }
-
-    private void completeCheckout() {
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout")));
-        checkoutButton.click();
-        fillCheckoutInformation("Mohamed", "Yasser", "35934");
-        WebElement finishButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("finish")));
-        finishButton.click();
-    }
-
-    private void logout() {
-        WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("react-burger-menu-btn")));
-        menuButton.click();
-        WebElement logoutLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Logout")));
-        logoutLink.click();
-    }
-
-    // ==================== TEST CASES ====================
-
-    @Test(priority = 1, description = "Add multiple products to cart and verify count")
-    public void addProducts_toCart_updatesCountCorrectly() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-test.allthethings()-t-shirt-(red)");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-
-        Assert.assertEquals(getCartCount(), "3", "Cart should contain 3 items");
-    }
-
-    @Test(priority = 2, description = "View product details and verify information matches")
-    public void viewProduct_fromCatalog_displaysCorrectDetails() {
-        login(STANDARD_USER, PASSWORD);
-
-        WebElement productTitle = driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div"));
-        String titleBeforeClick = productTitle.getText();
-        productTitle.click();
-
-        WebElement productDetailTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]")));
-        String titleAfterClick = productDetailTitle.getText();
-
-        WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
-        backButton.click();
-
-        Assert.assertEquals(titleAfterClick, titleBeforeClick, "Product title should match on detail page");
-    }
-
-    @Test(priority = 3, description = "Add product from detail page")
-    public void addProduct_fromDetailPage_addsToCart() {
-        login(STANDARD_USER, PASSWORD);
-
+    @Test
+    public void ViewandAdd(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.xpath("//*[@id=\"item_2_title_link\"]/div")).click();
-        addProductToCart("add-to-cart");
-
-        WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
-        backButton.click();
+        WebElement Add = wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart")));
+        Add.click();
+        WebElement back = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
+        back.click();
     }
 
-    @Test(priority = 4, description = "Remove product from inventory page")
-    public void removeProduct_fromInventory_updatesCart() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-test.allthethings()-t-shirt-(red)");
-        removeProductFromCart("remove-test.allthethings()-t-shirt-(red)");
+    @Test
+    public void removeProduct(){
+        driver.findElement(By.id("remove-test.allthethings()-t-shirt-(red)")).click();
     }
 
-    @Test(priority = 5, description = "Navigate to cart and verify count")
-    public void navigateToCart_withItems_displaysCorrectCount() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-        addProductToCart("add-to-cart-sauce-labs-onesie");
-
-        goToCart();
-        Assert.assertEquals(getCartCount(), "3", "Cart should display 3 items");
+    @Test
+    public void GotoCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a")).click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "3");
     }
 
-    @Test(priority = 6, description = "Remove product from cart page")
-    public void removeProduct_fromCartPage_updatesCount() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-
-        goToCart();
-        removeProductFromCart("remove-sauce-labs-bike-light");
-
-        Assert.assertEquals(getCartCount(), "1", "Cart should contain 1 item after removal");
+    @Test
+    public void RemoveFromCart(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement Remove = wait.until(ExpectedConditions.elementToBeClickable(By.id("remove-sauce-labs-bike-light")));
+        Remove.click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "2");
     }
 
-    @Test(priority = 7, description = "Continue shopping from cart maintains cart state")
-    public void continueShopping_fromCart_maintainsItems() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-
-        goToCart();
-        WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("continue-shopping")));
-        continueButton.click();
-
-        Assert.assertEquals(getCartCount(), "2", "Cart should still contain 2 items");
+    @Test
+    public void BackToHome(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("continue-shopping")).click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "2");
     }
 
-    @Test(priority = 8, description = "Logout and verify redirect to login page")
-    public void logout_fromInventory_redirectsToLogin() {
-        login(STANDARD_USER, PASSWORD);
-
-        logout();
-
-        Assert.assertEquals(driver.getCurrentUrl(), BASE_URL, "Should redirect to login page after logout");
+    @Test
+    public void LogOut(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement bar = wait.until(ExpectedConditions.elementToBeClickable(By.id("react-burger-menu-btn")));
+        bar.click();
+        WebElement Logout = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Logout")));
+        Logout.click();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/");
     }
 
-    @Test(priority = 9, description = "Cart persists after logout and login")
-    public void cartPersistence_afterLogoutLogin_maintainsItems() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-
-        logout();
-        login(STANDARD_USER, PASSWORD);
-
-        Assert.assertEquals(getCartCount(), "2", "Cart should persist items after logout/login");
+    @Test
+    public void LogIn(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "2");
     }
 
-    @Test(priority = 10, description = "Complete basic checkout flow")
-    public void checkout_withValidData_completesSuccessfully() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-        completeCheckout();
-
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout successfully");
+    @Test
+    public void GotoCartAgain(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a")).click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "2");
     }
 
-    @Test(priority = 11, description = "Complete checkout after removing items from cart")
-    public void checkout_afterRemovingItems_completesSuccessfully() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-        addProductToCart("add-to-cart-sauce-labs-bolt-t-shirt");
-        addProductToCart("add-to-cart-sauce-labs-fleece-jacket");
-
-        goToCart();
-        removeProductFromCart("remove-sauce-labs-backpack");
-        removeProductFromCart("remove-sauce-labs-bolt-t-shirt");
-
-        completeCheckout();
-
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout after removing items");
+    @Test
+    public void GoToCheckout(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement checkout = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout")));
+        checkout.click();
     }
 
-    @Test(priority = 12, description = "Complete checkout after removing item from detail page")
-    public void checkout_afterRemovingFromDetailPage_completesSuccessfully() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-
-        goToCart();
-
-        driver.findElement(By.className("inventory_item_name")).click();
-        removeProductFromCart("remove");
-
-        WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
-        backButton.click();
-
-        goToCart();
-        completeCheckout();
-
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout after removing from detail page");
+    @Test
+    public void AddInformation(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("first-name")).sendKeys("mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("selem");
+        driver.findElement(By.id("postal-code")).sendKeys("32511");
+        driver.findElement(By.id("continue")).click();
     }
 
-    @Test(priority = 13, description = "Checkout with empty cart should not complete")
-    public void checkout_withEmptyCart_doesNotComplete() {
-        login(STANDARD_USER, PASSWORD);
-
-        goToCart();
-
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout")));
-        checkoutButton.click();
-
-        fillCheckoutInformation("Mohamed", "Yasser", "35934");
-
-        WebElement finishButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("finish")));
-        finishButton.click();
-
-        Assert.assertNotEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should not complete checkout with empty cart");
-    }
-
-    @Test(priority = 14, description = "Checkout with whitespace in fields should not complete")
-    public void checkout_withWhitespaceInFields_doesNotComplete() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout")));
-        checkoutButton.click();
-
-        driver.findElement(By.id("first-name")).sendKeys("   ");
-        driver.findElement(By.id("last-name")).sendKeys("   ");
-        driver.findElement(By.id("postal-code")).sendKeys("   ");
-
-        WebElement continueButton = driver.findElement(By.id("continue"));
-        Assert.assertFalse(continueButton.isEnabled(), "Continue button should be disabled with whitespace input");
-    }
-
-    @Test(priority = 15, description = "Checkout with empty fields shows validation error")
-    public void checkout_withEmptyFields_showsValidationError() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout")));
-        checkoutButton.click();
-
-        WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("continue")));
-        continueButton.click();
-
-        Assert.assertNotEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should not proceed with empty checkout fields");
-    }
-
-    @Test(priority = 16, description = "Reset app state clears cart")
-    public void resetAppState_fromMenu_clearsCart() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-
-        WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("react-burger-menu-btn")));
-        menuButton.click();
-
-        WebElement resetLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("reset_sidebar_link")));
-        resetLink.click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("react-burger-cross-btn"))).click();
-
-        WebElement addButton = wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.id("add-to-cart-sauce-labs-backpack")));
-        Assert.assertEquals(addButton.getText(), "Add to cart", "Button should show 'Add to cart' after reset");
-    }
-
-    @Test(priority = 17, description = "Checkout with removed products from inventory page")
-    public void checkout_afterRemovingFromInventory_completesWithRemainingItems() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-fleece-jacket");
-        addProductToCart("add-to-cart-sauce-labs-bolt-t-shirt");
-
-        goToCart();
-
-        driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div")).click();
-        removeProductFromCart("remove");
-
-        WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
-        backButton.click();
-
-        goToCart();
-        completeCheckout();
-
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout with remaining items");
-    }
-
-    @Test(priority = 18, description = "Add item from detail page during checkout")
-    public void addItem_duringCheckout_includesNewItem() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-
-        goToCart();
-
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout")));
-        checkoutButton.click();
-
-        fillCheckoutInformation("Tamer", "Tito", "55555");
-
-        WebElement menuButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("react-burger-menu-btn")));
-        menuButton.click();
-
-        WebElement inventoryLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("inventory_sidebar_link")));
-        inventoryLink.click();
-
-        addProductToCart("add-to-cart-test.allthethings()-t-shirt-(red)");
-
-        goToCart();
-        completeCheckout();
-
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout with additional item");
-    }
-
-    @Test(priority = 19, description = "Cannot checkout after removing all items from cart")
-    public void checkout_afterRemovingAllItems_staysOnCartPage() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-test.allthethings()-t-shirt-(red)");
-        addProductToCart("add-to-cart-sauce-labs-onesie");
-
-        goToCart();
-
-        String cartUrl = driver.getCurrentUrl();
-
-        removeProductFromCart("remove-sauce-labs-onesie");
-        removeProductFromCart("remove-test.allthethings()-t-shirt-(red)");
-
-        WebElement checkoutButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("checkout")));
-        checkoutButton.click();
-
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertEquals(currentUrl, cartUrl, "Should remain on cart page when cart is empty");
-    }
-
-    @Test(priority = 20, description = "Verify cart badge disappears after completing checkout")
-    public void checkout_completion_removesCartBadge() {
-        login(STANDARD_USER, PASSWORD);
-
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-        completeCheckout();
-
+    @Test
+    public void Finish(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.findElement(By.id("finish")).click();
         try {
-            driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a/span"));
-            Assert.fail("Cart badge should not be present after checkout completion");
-        } catch (NoSuchElementException e) {
-            // Expected - cart badge should not exist after checkout
+            WebElement cart_no = driver.findElement(By.
+                    xpath("//*[@id=\"shopping_cart_container\"]/a/span"));
+        }catch (NoSuchElementException e){
+            System.out.println("passes");
+        }
+        WebElement HomeBack = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
+        HomeBack.click();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+    }
+    //============================================================================================================
+
+    @Test
+    public void check_flow() throws InterruptedException
+    {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+
+        WebElement icon = driver.findElement(By.className("shopping_cart_link"));
+        icon.click();
+
+        List<WebElement> products = driver.findElements(By.className("cart_list"));
+        Assert.assertFalse(products.isEmpty());
+        driver.findElement(By.id("checkout")).click();
+
+        driver.findElement(By.id("first-name")).sendKeys("moahmed");
+        driver.findElement(By.id("last-name")).sendKeys("akram");
+        driver.findElement(By.id("postal-code")).sendKeys("12445");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        driver.findElement(By.id("back-to-products")).click();
+    }
+
+    @Test
+    public void check_flow2() throws InterruptedException
+    {
+        driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).click();
+
+        driver.findElement(By.id("add-to-cart")).click();
+        driver.findElement(By.id("back-to-products")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+
+        WebElement icon = driver.findElement(By.className("shopping_cart_link"));
+
+        icon.click();
+
+        List <WebElement> products = driver.findElements(By.className("cart_list"));
+        Assert.assertFalse(products.isEmpty());
+        driver.findElement(By.id("checkout")).click();
+
+        driver.findElement(By.id("first-name")).sendKeys("moahmed");
+        driver.findElement(By.id("last-name")).sendKeys("akram");
+        driver.findElement(By.id("postal-code")).sendKeys("12445");
+        driver.findElement(By.id("continue")).click();
+
+        driver.findElement(By.id("finish")).click();
+        driver.findElement(By.id("back-to-products")).click();
+
+    }
+
+    @Test
+    public void checkout_process_complete() throws InterruptedException {
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void Remove_products() throws InterruptedException {
+        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("login-button")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("remove-sauce-labs-backpack")).click();
+        driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void Remove_products2() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.className("inventory_item_name")).click();
+        driver.findElement(By.id("remove")).click();
+        driver.findElement(By.id("back-to-products")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void empty_cart() throws InterruptedException {
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void fields_with_space() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("         ");
+        driver.findElement(By.id("last-name")).sendKeys("          ");
+        driver.findElement(By.id("postal-code")).sendKeys("        ");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void empty_fields() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("");
+        driver.findElement(By.id("last-name")).sendKeys("");
+        driver.findElement(By.id("postal-code")).sendKeys("");
+        driver.findElement(By.id("continue")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void Reset_App_State() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("react-burger-menu-btn")).click();
+        driver.findElement(By.id("reset_sidebar_link")).click();
+        WebElement AddBtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        Assert.assertEquals(AddBtn.getText(), "Add to cart");
+        AddBtn.click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+    }
+
+    @Test
+    public void locked_out_user() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void problem_user() throws InterruptedException {
+        driver.findElement(By.id("user-name")).sendKeys("problem_user");
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void performance_glitch_user() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void error_user() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void visual_user() throws InterruptedException {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
+        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("postal-code")).sendKeys("35934");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+        String checkout_URL = driver.getCurrentUrl();
+        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+    }
+
+    @Test
+    public void check_flow3() throws InterruptedException
+    {
+        driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        WebElement icon = driver.findElement(By.className("shopping_cart_link"));
+        icon.click();
+
+        List <WebElement> products = driver.findElements(By.className("cart_list"));
+        driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div")).click();
+
+        driver.findElement(By.id("remove")).click();
+        driver.findElement(By.id("back-to-products")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+
+        Assert.assertFalse(products.isEmpty());
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("moahmed");
+        driver.findElement(By.id("last-name")).sendKeys("akram");
+        driver.findElement(By.id("postal-code")).sendKeys("12445");
+        driver.findElement(By.id("continue")).click();
+
+        driver.findElement(By.id("finish")).click();
+        driver.findElement(By.id("back-to-products")).click();
+    }
+
+    @Test
+    public void check_flow4() throws InterruptedException
+    {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+
+        WebElement icon = driver.findElement(By.className("shopping_cart_link"));
+        icon.click();
+
+        List <WebElement> products = driver.findElements(By.className("cart_list"));
+        Assert.assertFalse(products.isEmpty());
+        driver.findElement(By.id("checkout")).click();
+
+        driver.findElement(By.id("first-name")).sendKeys("tamer");
+        driver.findElement(By.id("last-name")).sendKeys("tito");
+        driver.findElement(By.id("postal-code")).sendKeys("55555");
+        driver.findElement(By.id("continue")).click();
+
+        driver.findElement(By.id("react-burger-menu-btn")).click();
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("inventory_sidebar_link")));
+        driver.findElement(By.id("inventory_sidebar_link")).click();
+        driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+        driver.findElement(By.className("shopping_cart_link")).click();
+
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("tamer");
+        driver.findElement(By.id("last-name")).sendKeys("tito");
+        driver.findElement(By.id("postal-code")).sendKeys("55555");
+        driver.findElement(By.id("continue")).click();
+
+        driver.findElement(By.id("finish")).click();
+        driver.findElement(By.id("back-to-products")).click();
+    }
+
+    @Test
+    public void check_flow5() throws InterruptedException
+    {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
+        WebElement icon = driver.findElement(By.className("shopping_cart_link"));
+        icon.click();
+        List <WebElement> products = driver.findElements(By.className("cart_list"));
+        Assert.assertFalse(products.isEmpty());
+        driver.findElement(By.id("checkout")).click();
+        WebElement first = driver.findElement(By.id("first-name"));
+        first.sendKeys("   ");
+        WebElement last = driver.findElement(By.id("last-name"));
+        last.sendKeys("   ");
+        WebElement ZIP = driver.findElement(By.id("postal-code"));
+        ZIP.sendKeys("   ");
+        WebElement BTN = driver.findElement(By.id("continue"));
+        Assert.assertFalse(BTN.isEnabled());
+    }
+    @Test
+    public void check_flow6() throws InterruptedException
+    {
+        driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
+
+        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
+
+        WebElement icon = driver.findElement(By.className("shopping_cart_link"));
+        icon.click();
+
+        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
+        driver.findElement(By.id("remove-test.allthethings()-t-shirt-(red)")).click();
+
+        String cartURL = driver.getCurrentUrl();
+        driver.findElement(By.id("checkout")).click();
+
+        String Url = driver.getCurrentUrl();
+        Assert.assertEquals(cartURL , Url);
+
+    }
+    //==================================================================================================================
+
+    @Test
+    public void flowLowToHigh() {
+        WebElement filter = wait.until(ExpectedConditions.elementToBeClickable(By.className("product_sort_container")));
+        filter.click();
+        filter.findElement(By.xpath("//option[@value='lohi']")).click();
+
+        List<WebElement> addButtons = driver.findElements(By.xpath("//button[contains(@id,'add-to-cart')]"));
+        addButtons.get(0).click();
+        addButtons.get(1).click();
+
+        driver.findElement(By.className("shopping_cart_link")).click();
+
+        List<WebElement> prices = driver.findElements(By.className("inventory_item_price"));
+        double price0 = Double.parseDouble(prices.get(0).getText().replace("$",""));
+        double price1 = Double.parseDouble(prices.get(1).getText().replace("$",""));
+
+        if(price0 > price1){
+            driver.findElement(By.xpath("//button[contains(@id,'remove')]")).click();
+        } else {
+            driver.findElements(By.xpath("//button[contains(@id,'remove')]")).get(1).click();
         }
 
-        WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
-        backButton.click();
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Habiba");
+        driver.findElement(By.id("last-name")).sendKeys("Ragab");
+        driver.findElement(By.id("postal-code")).sendKeys("12345");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
 
-        Assert.assertEquals(driver.getCurrentUrl(), INVENTORY_URL, "Should return to inventory page");
+        WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("complete-header")));
+        Assert.assertEquals(msg.getText(), "THANK YOU FOR YOUR ORDER");
+
+        driver.findElement(By.id("back-to-products")).click();
     }
 
-    @Test(priority = 21, description = "Complete checkout with locked_out_user should fail at login")
-    public void checkout_withLockedOutUser_failsAtLogin() {
-        login(LOCKED_OUT_USER, PASSWORD);
+    @Test
+    public void flowAddRemoveMidway() {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
 
-        WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("[data-test='error']")));
+        driver.findElement(By.className("shopping_cart_link")).click();
 
-        Assert.assertTrue(errorMessage.isDisplayed(), "Error message should appear for locked out user");
+        driver.findElement(By.id("remove-sauce-labs-onesie")).click();
+
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Habiba");
+        driver.findElement(By.id("last-name")).sendKeys("Ragab");
+        driver.findElement(By.id("postal-code")).sendKeys("12345");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+
+        WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("complete-header")));
+        Assert.assertEquals(msg.getText(), "THANK YOU FOR YOUR ORDER");
+
+        driver.findElement(By.id("back-to-products")).click();
     }
 
-    @Test(priority = 22, description = "Complete checkout with problem_user")
-    public void checkout_withProblemUser_completesSuccessfully() {
-        login(PROBLEM_USER, PASSWORD);
+    @Test
+    public void flowEmptyCartCheckout() {
+        driver.findElement(By.className("shopping_cart_link")).click();
 
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-        completeCheckout();
+        List<WebElement> removeBtns = driver.findElements(By.xpath("//button[contains(@id,'remove')]"));
+        for(WebElement btn : removeBtns){
+            btn.click();
+        }
 
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout with problem_user");
+        driver.findElement(By.id("checkout")).click();
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("cart.html"));
+
+        WebElement continueBtn = driver.findElement(By.id("continue"));
+        Assert.assertFalse(continueBtn.isEnabled() || continueBtn.isDisplayed());
     }
 
-    @Test(priority = 23, description = "Complete checkout with performance_glitch_user")
-    public void checkout_withPerformanceGlitchUser_completesSuccessfully() {
-        login(PERFORMANCE_GLITCH_USER, PASSWORD);
+    @Test
+    public void flowHighToLow() {
+        WebElement filter = wait.until(ExpectedConditions.elementToBeClickable(By.className("product_sort_container")));
+        filter.click();
+        filter.findElement(By.xpath("//option[@value='hilo']")).click();
 
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-        completeCheckout();
+        List<WebElement> addButtons = driver.findElements(By.xpath("//button[contains(@id,'add-to-cart')]"));
+        addButtons.get(0).click();
+        addButtons.get(1).click();
 
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout with performance_glitch_user");
+        driver.findElement(By.className("shopping_cart_link")).click();
+
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Habiba");
+        driver.findElement(By.id("last-name")).sendKeys("Ragab");
+        driver.findElement(By.id("postal-code")).sendKeys("12345");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+
+        WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("complete-header")));
+        Assert.assertEquals(msg.getText(), "THANK YOU FOR YOUR ORDER");
+
+        driver.findElement(By.id("back-to-products")).click();
     }
 
-    @Test(priority = 24, description = "Complete checkout with error_user")
-    public void checkout_withErrorUser_completesSuccessfully() {
-        login(ERROR_USER, PASSWORD);
+    @Test
+    public void flowPostPurchaseReview() {
+        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
 
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-        completeCheckout();
+        driver.findElement(By.className("shopping_cart_link")).click();
 
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout with error_user");
+        driver.findElement(By.id("checkout")).click();
+        driver.findElement(By.id("first-name")).sendKeys("Habiba");
+        driver.findElement(By.id("last-name")).sendKeys("Ragab");
+        driver.findElement(By.id("postal-code")).sendKeys("12345");
+        driver.findElement(By.id("continue")).click();
+        driver.findElement(By.id("finish")).click();
+
+        WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("complete-header")));
+        Assert.assertEquals(msg.getText(), "THANK YOU FOR YOUR ORDER");
+
+        driver.findElement(By.id("back-to-products")).click();
+
+        List<WebElement> inventory = driver.findElements(By.className("inventory_item"));
+        Assert.assertFalse(inventory.isEmpty());
+
+        List<WebElement> addBtns = driver.findElements(By.xpath("//button[contains(@id,'add-to-cart')]"));
+        Assert.assertTrue(addBtns.size() > 0);
+    }
+    @Test
+    public void success_process() throws InterruptedException {
+        WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        Sauce_Labs_Backpackbtn.click();
+        WebElement Sauce_Labs_Bolt_TShirtbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
+        Sauce_Labs_Bolt_TShirtbtn.click();
+        WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticon.click();
+        WebElement checkoutbutton = driver.findElement(By.id("checkout"));
+        checkoutbutton.click();
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_code_field = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield,"alaa",50);
+        slowType(lastnamefield,"mohammed",50);
+        slowType(postal_code_field,"25547",50);
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+        WebElement finishbutton = driver.findElement(By.id("finish"));
+        finishbutton.click();
     }
 
-    @Test(priority = 25, description = "Complete checkout with visual_user")
-    public void checkout_withVisualUser_completesSuccessfully() {
-        login(VISUAL_USER, PASSWORD);
+    @Test
+    public void success_process2() throws InterruptedException {
+        WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        WebElement Sauce_Labs_Bike_Lightbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bike-light"));
+        WebElement Sauce_Labs_Bolt_TShirtbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
+        WebElement Sauce_Labs_Fleece_Jacketbtn = driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket"));
+        Sauce_Labs_Backpackbtn.click();
+        Sauce_Labs_Bike_Lightbtn.click();
+        Sauce_Labs_Bolt_TShirtbtn.click();
+        Sauce_Labs_Fleece_Jacketbtn.click();
+        WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticon.click();
+        WebElement removebutton1 = driver.findElement(By.id("remove-sauce-labs-backpack"));
+        removebutton1.click();
 
-        addProductToCart("add-to-cart-sauce-labs-backpack");
-        goToCart();
-        completeCheckout();
+        WebElement removebutton2 = driver.findElement(By.id("remove-sauce-labs-bike-light"));
+        removebutton2.click();
 
-        Assert.assertEquals(driver.getCurrentUrl(), CHECKOUT_COMPLETE_URL,
-                "Should complete checkout with visual_user");
+        WebElement checkoutbutton = driver.findElement(By.id("checkout"));
+        checkoutbutton.click();
+
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_codefield = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield, "sara", 50);
+        slowType(lastnamefield, "karam", 50);
+        slowType(postal_codefield, "96335", 50);
+
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+
+        WebElement finishbutton = driver.findElement(By.id("finish"));
+        finishbutton.click();
+
+
     }
 
-    @Test(priority = 26, description = "View and add product in single flow")
-    public void viewAndAddProduct_fromDetailPage_addsToCart() {
-        login(STANDARD_USER, PASSWORD);
+    @Test
+    public void wrong_process() throws InterruptedException {
+        WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        WebElement Sauce_Labs_Bike_Lightbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bike-light"));
+        Sauce_Labs_Backpackbtn.click();
+        Sauce_Labs_Bike_Lightbtn.click();
 
-        driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).click();
-        addProductToCart("add-to-cart");
+        WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticon.click();
+        WebElement removebutton = driver.findElement(By.id("remove-sauce-labs-backpack"));
+        removebutton.click();
 
-        WebElement backButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("back-to-products")));
-        backButton.click();
+        WebElement removebutton2 = driver.findElement(By.id("remove-sauce-labs-bike-light"));
+        removebutton2.click();
+        WebElement checkoutbutton = driver.findElement(By.id("checkout"));
+        checkoutbutton.click();
 
-        addProductToCart("add-to-cart-sauce-labs-bike-light");
-        goToCart();
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_codefield = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield, "alaa", 50);
+        slowType(lastnamefield, "Ali", 50);
+        slowType(postal_codefield, "96335", 50);
 
-        List<WebElement> cartItems = driver.findElements(By.className("cart_item"));
-        Assert.assertFalse(cartItems.isEmpty(), "Cart should contain items");
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+
+        WebElement finishbutton = driver.findElement(By.id("finish"));
+        finishbutton.click();
+
+
+    }
+
+    @Test
+    public void wrong_process2() throws InterruptedException {
+        WebElement filter_pricebtn = driver.findElement(By.className("product_sort_container"));
+        Select high_to_lowprice = new Select(filter_pricebtn);
+        high_to_lowprice.selectByVisibleText("Price (high to low)");
+
+        WebElement addproductbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        addproductbtn.click();
+        WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticon.click();
+        WebElement checkoutbutton = driver.findElement(By.id("checkout"));
+        checkoutbutton.click();
+
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_codefield = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield, "alaa", 50);
+        slowType(lastnamefield, " ", 50);
+        slowType(postal_codefield, " ", 50);
+
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+
+        WebElement finishbutton = driver.findElement(By.id("finish"));
+        finishbutton.click();
+
+    }
+
+    @Test
+    public void wrong_process3() throws InterruptedException {
+        WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        WebElement Sauce_Labs_Bike_Lightbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bike-light"));
+        WebElement Sauce_Labs_Bolt_TShirtbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
+        WebElement Sauce_Labs_Fleece_Jacketbtn = driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket"));
+        Sauce_Labs_Backpackbtn.click();
+        Sauce_Labs_Bike_Lightbtn.click();
+        Sauce_Labs_Bolt_TShirtbtn.click();
+        Sauce_Labs_Fleece_Jacketbtn.click();
+        WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticon.click();
+
+        WebElement menu_Btn = driver.findElement(By.id("react-burger-menu-btn"));
+        menu_Btn.click();
+        WebElement logoutbutton = driver.findElement(By.id("logout_sidebar_link"));
+        logoutbutton.click();
+        WebElement usernamefield = driver.findElement(By.id("user-name"));
+        WebElement passwordfield = driver.findElement(By.id("password"));
+        WebElement loginbutton = driver.findElement(By.id("login-button"));
+        slowType(usernamefield, "standard_user", 50);
+        slowType(passwordfield, "secret_sauce", 50);
+        loginbutton.click();
+        WebElement carticonT2 = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticonT2.click();
+        WebElement checkoutbutton = driver.findElement(By.id("checkout"));
+        checkoutbutton.click();
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_codefield = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield, " ", 50);
+        slowType(lastnamefield, " ", 50);
+        slowType(postal_codefield, " ", 50);
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+        WebElement finishbutton = driver.findElement(By.id("finish"));
+        finishbutton.click();
+    }
+
+    @Test
+    public void wrong_process4() throws InterruptedException {
+        WebElement Sauce_Labs_Fleece_Jacketbtn = driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div"));
+        Sauce_Labs_Fleece_Jacketbtn.click();
+        WebElement Sauce_Labs_Fleece_Jacketdetails = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[2]"));
+        String detailtext =  Sauce_Labs_Fleece_Jacketdetails.getText();
+        Assert.assertTrue(detailtext.contains("quarter-zip fleece jacket"));
+        WebElement addBtn = driver.findElement(By.id("add-to-cart"));
+        addBtn.click();
+        WebElement backBtn = driver.findElement(By.id("back-to-products"));
+        backBtn.click();
+        WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticon.click();
+        WebElement checkoutbutton = driver.findElement(By.id("checkout"));
+        checkoutbutton.click();
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_codefield = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield, "Ahmed", 50);
+        slowType(lastnamefield, " Ali", 50);
+        slowType(postal_codefield, " ", 50);
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+        WebElement finishbutton = driver.findElement(By.id("finish"));
+        finishbutton.click();
+    }
+    @Test
+    public void success_process3() throws InterruptedException {
+        WebElement filter_z_to_a_btn = driver.findElement(By.className("product_sort_container"));
+        Select z_to_a = new Select(filter_z_to_a_btn);
+        z_to_a.selectByVisibleText("Name (Z to A)");
+
+        WebElement Sauce_Labs_Bolt_T_Shirtbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
+        Sauce_Labs_Bolt_T_Shirtbtn.click();
+        WebElement Sauce_Labs_Fleece_Jacketbtn = driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket"));
+        Sauce_Labs_Fleece_Jacketbtn.click();
+        WebElement carticon = driver.findElement(By.className("shopping_cart_link"));
+        String actualnumb = carticon.getText();
+        Assert.assertEquals(actualnumb, "2");
+        carticon.click();
+        WebElement removeBtn = driver.findElement(By.id("remove-sauce-labs-fleece-jacket"));
+        removeBtn.click();
+        WebElement carticon2 = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        String actualnumb2 = carticon2.getText();
+        Assert.assertEquals(actualnumb2, "1");
+        WebElement price = driver.findElement(By.cssSelector("div.inventory_item_price"));
+        String actualprice = price.getText();
+        Assert.assertEquals(actualprice, "$15.99");
+        WebElement checkoutbtn = driver.findElement(By.id("checkout"));
+        checkoutbtn.click();
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_codefield = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield, "Ziad ", 50);
+        slowType(lastnamefield, "Ahmed ", 50);
+        slowType(postal_codefield, "99999 ", 50);
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+        WebElement finishbutton = driver.findElement(By.id("finish"));
+        finishbutton.click();
+    }
+
+    @AfterClass
+    public void closeBrowser() throws InterruptedException {
+        Thread.sleep(2000);
+        driver.close();
     }
 }
-
