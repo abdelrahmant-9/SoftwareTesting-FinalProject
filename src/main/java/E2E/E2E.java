@@ -1,4 +1,4 @@
-package integration.Cart;
+package E2E;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -98,6 +98,38 @@ public class E2E {
             Assert.fail("AddFirstProduct failed: " + e.getMessage());
         }
         System.out.println("AddFirstProduct Result = " + result);
+    }
+
+    @Test(priority = 3, groups = {"e2e"})
+    public void ViewProductDescription() {
+
+        boolean result;
+
+        try {
+            clickWhenReady(By.linkText("Sauce Labs Backpack"));
+
+            waitForElement(By.className("inventory_details_name"));
+            waitForElement(By.className("inventory_details_desc"));
+            waitForElement(By.className("inventory_details_price"));
+
+            String name = driver.findElement(By.className("inventory_details_name")).getText();
+            String desc = driver.findElement(By.className("inventory_details_desc")).getText();
+            String price = driver.findElement(By.className("inventory_details_price")).getText();
+
+            Assert.assertFalse(name.isEmpty());
+            Assert.assertFalse(desc.isEmpty());
+            Assert.assertTrue(price.contains("$"));
+
+            clickWhenReady(By.id("back-to-products"));
+
+            result = true;
+
+        } catch (AssertionError e) {
+            result = false;
+            Assert.fail("ViewProductDescription failed: " + e.getMessage());
+        }
+
+        System.out.println("ViewProductDescription Result = " + result);
     }
 
     @Test(priority = 3, groups = {"e2e"})
