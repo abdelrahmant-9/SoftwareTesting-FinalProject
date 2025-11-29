@@ -88,8 +88,10 @@ public class StandardUser {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.id("shopping_cart_container")).click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "1");
         driver.findElement(By.id("remove-sauce-labs-backpack")).click();
-
         boolean exists = isElementPresent(By.linkText("Sauce Labs Backpack"));
         Assert.assertFalse(exists);
     }
