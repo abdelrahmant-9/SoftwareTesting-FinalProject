@@ -410,20 +410,19 @@ public class E2E_Final {
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
 
-   @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void afterEach(Method method) {
 
         Test t = method.getAnnotation(Test.class);
+        if (t == null) return;
 
-        if (t == null) {
-            return;
+        for (String g : t.groups()) {
+            if (g.equals("happy1")) return;
         }
 
-        if (Arrays.asList(t.groups()).contains("happy1")) {
-            return;
-        }
         resetAppState();
     }
+
     @AfterClass
     public void closeBrowser() {
         if(driver != null) {
