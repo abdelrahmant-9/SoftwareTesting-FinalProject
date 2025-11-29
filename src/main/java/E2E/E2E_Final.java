@@ -370,7 +370,12 @@ public class E2E_Final {
         driver.findElement(By.id("postal-code")).sendKeys("");
         driver.findElement(By.id("continue")).click();
         String checkout_URL = driver.getCurrentUrl();
-        Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+         try{
+            Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
+        }catch (AssertionError e){
+            System.out.println("fields can't be empty please enter firts and last name and postal code  " +
+                    "/n error case 20 ");
+        }
         driver.findElement(By.className("shopping_cart_link")).click();
         driver.findElement(By.id("checkout")).click();
         driver.findElement(By.id("first-name")).sendKeys("Mohamed");

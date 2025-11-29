@@ -51,18 +51,19 @@ public class StandardUser {
         driver.findElement(By.id("login-button")).click();
     }
 
-    @BeforeMethod
-    public void smallPause() throws InterruptedException {
-        Thread.sleep(500);
-    }
+    // @BeforeMethod
+    // public void smallPause() throws InterruptedException {
+    //     Thread.sleep(500);
+    // }
 
     @Test(priority = 1)
     public void AddSingleItemToCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
         driver.findElement(By.id("shopping_cart_container")).click();
-        WebElement item = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.linkText("Sauce Labs Bike Light")));
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "1");
     }
 
     @Test(priority = 2)
@@ -71,12 +72,13 @@ public class StandardUser {
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
         driver.findElement(By.id("shopping_cart_container")).click();
-
         WebElement item1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.linkText("Sauce Labs Bike Light")));
         WebElement item2 = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.linkText("Sauce Labs Bolt T-Shirt")));
-
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "2");
         Assert.assertTrue(item1.isDisplayed());
         Assert.assertTrue(item2.isDisplayed());
     }
@@ -86,8 +88,10 @@ public class StandardUser {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.id("shopping_cart_container")).click();
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "1");
         driver.findElement(By.id("remove-sauce-labs-backpack")).click();
-
         boolean exists = isElementPresent(By.linkText("Sauce Labs Backpack"));
         Assert.assertFalse(exists);
     }
@@ -131,9 +135,9 @@ public class StandardUser {
         Assert.assertFalse(badgeExists);
     }
 
-    @AfterMethod
+     @AfterMethod
     public void closeBrowser() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(500);
         driver.quit();
     }
 }
