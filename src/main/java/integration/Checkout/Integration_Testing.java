@@ -1,4 +1,4 @@
-package Integration;
+package integration.Checkout;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;

@@ -3,15 +3,14 @@
 <suite name="Failed suite [Default Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="SwagLabs-Automation(failed)">
     <classes>
-      <class name="Integration.Allusers">
+      <class name="E2E.E2E_Final">
         <methods>
+          <include name="error_user"/>
+          <include name="afterEach"/>
           <include name="closeBrowser"/>
-          <include name="Remove_cart2"/>
           <include name="openBrowser"/>
-          <include name="checkout_close"/>
-          <include name="Remove_cart3"/>
         </methods>
-      </class> <!-- Integration.Allusers -->
+      </class> <!-- E2E.E2E_Final -->
     </classes>
   </test> <!-- SwagLabs-Automation(failed) -->
 </suite> <!-- Failed suite [Default Suite] -->
