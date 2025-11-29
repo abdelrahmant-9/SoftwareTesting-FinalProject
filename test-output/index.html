@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_Suite" class="navigator-link">
-              <span class="suite-name border-failed">Default Suite</span>
+              <span class="suite-name border-passed">Default Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,26 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">8 methods, 2 failed,   6 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Default_Suite" class="hide-methods failed suite-Default_Suite"> (hide)</a> <!-- hide-methods failed suite-Default_Suite -->
-                      <a href="#" panel-name="suite-Default_Suite" class="show-methods failed suite-Default_Suite"> (show)</a> <!-- show-methods failed suite-Default_Suite -->
-                    </span>
-                    <div class="method-list-content failed suite-Default_Suite">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="donot_select_products">donot_select_products</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="only_spaces_FirstName">only_spaces_FirstName</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-Default_Suite -->
+                    <span class="method-stats">7 methods,   7 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -122,32 +103,37 @@
                     <div class="method-list-content passed suite-Default_Suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="Add_products">Add_products</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_Suite" title="integration.Cart.StandardUser" class="method navigator-link" hash-for-method="AddMultipleItemsToCart">AddMultipleItemsToCart</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="DescriptionPage_open">DescriptionPage_open</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_Suite" title="integration.Cart.StandardUser" class="method navigator-link" hash-for-method="AddSingleItemToCart">AddSingleItemToCart</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="Remove_button">Remove_button</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_Suite" title="integration.Cart.StandardUser" class="method navigator-link" hash-for-method="CartBadgeCount">CartBadgeCount</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="checkout_IformationPage_open">checkout_IformationPage_open</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_Suite" title="integration.Cart.StandardUser" class="method navigator-link" hash-for-method="CartIsEmptyInitially">CartIsEmptyInitially</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="fields_empty">fields_empty</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_Suite" title="integration.Cart.StandardUser" class="method navigator-link" hash-for-method="ContinueShoppingFromCart">ContinueShoppingFromCart</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_Suite" title="OldWork.RemainingPages.Checkout" class="method navigator-link" hash-for-method="valid_inputs">valid_inputs</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_Suite" title="integration.Cart.StandardUser" class="method navigator-link" hash-for-method="GoToCheckoutFromCart">GoToCheckoutFromCart</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_Suite" title="integration.Cart.StandardUser" class="method navigator-link" hash-for-method="RemoveItemFromCart">RemoveItemFromCart</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_Suite -->
@@ -162,88 +148,59 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_Suite" class="panel Default_Suite">
-          <div class="suite-Default_Suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">OldWork.RemainingPages.Checkout</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="donot_select_products">
-                  </a> <!-- donot_select_products -->
-                  <span class="method-name">donot_select_products</span>
-                  <div class="stack-trace">java.lang.AssertionError: did not expect [https://www.saucedemo.com/checkout-step-one.html] but found [https://www.saucedemo.com/checkout-step-one.html]
-	at OldWork.RemainingPages.Checkout.donot_select_products(Checkout.java:86)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-... Removed 27 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="only_spaces_FirstName">
-                  </a> <!-- only_spaces_FirstName -->
-                  <span class="method-name">only_spaces_FirstName</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [https://www.saucedemo.com/checkout-step-one.html] but found [https://www.saucedemo.com/checkout-step-two.html]
-	at OldWork.RemainingPages.Checkout.only_spaces_FirstName(Checkout.java:100)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
-	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-... Removed 28 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_Suite-class-failed -->
           <div class="suite-Default_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">OldWork.RemainingPages.Checkout</span>
+              <span class="class-name">integration.Cart.StandardUser</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="Add_products">
-                  </a> <!-- Add_products -->
-                  <span class="method-name">Add_products</span>
+                  <a name="AddMultipleItemsToCart">
+                  </a> <!-- AddMultipleItemsToCart -->
+                  <span class="method-name">AddMultipleItemsToCart</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="DescriptionPage_open">
-                  </a> <!-- DescriptionPage_open -->
-                  <span class="method-name">DescriptionPage_open</span>
+                  <a name="AddSingleItemToCart">
+                  </a> <!-- AddSingleItemToCart -->
+                  <span class="method-name">AddSingleItemToCart</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="Remove_button">
-                  </a> <!-- Remove_button -->
-                  <span class="method-name">Remove_button</span>
+                  <a name="CartBadgeCount">
+                  </a> <!-- CartBadgeCount -->
+                  <span class="method-name">CartBadgeCount</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="checkout_IformationPage_open">
-                  </a> <!-- checkout_IformationPage_open -->
-                  <span class="method-name">checkout_IformationPage_open</span>
+                  <a name="CartIsEmptyInitially">
+                  </a> <!-- CartIsEmptyInitially -->
+                  <span class="method-name">CartIsEmptyInitially</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="fields_empty">
-                  </a> <!-- fields_empty -->
-                  <span class="method-name">fields_empty</span>
+                  <a name="ContinueShoppingFromCart">
+                  </a> <!-- ContinueShoppingFromCart -->
+                  <span class="method-name">ContinueShoppingFromCart</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="valid_inputs">
-                  </a> <!-- valid_inputs -->
-                  <span class="method-name">valid_inputs</span>
+                  <a name="GoToCheckoutFromCart">
+                  </a> <!-- GoToCheckoutFromCart -->
+                  <span class="method-name">GoToCheckoutFromCart</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="RemoveItemFromCart">
+                  </a> <!-- RemoveItemFromCart -->
+                  <span class="method-name">RemoveItemFromCart</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -260,7 +217,7 @@
 &lt;suite name=&quot;Default Suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;SwagLabs-Automation&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;OldWork.RemainingPages.Checkout&quot;/&gt;
+      &lt;class name=&quot;integration.Cart.StandardUser&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- SwagLabs-Automation --&gt;
 &lt;/suite&gt; &lt;!-- Default Suite --&gt;
@@ -300,44 +257,40 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(8);
+data.addRows(7);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'Add_products')
-data.setCell(0, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(0, 3, 1359);
+data.setCell(0, 1, 'AddMultipleItemsToCart')
+data.setCell(0, 2, 'integration.Cart.StandardUser')
+data.setCell(0, 3, 652);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'Remove_button')
-data.setCell(1, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(1, 3, 1347);
+data.setCell(1, 1, 'GoToCheckoutFromCart')
+data.setCell(1, 2, 'integration.Cart.StandardUser')
+data.setCell(1, 3, 524);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'valid_inputs')
-data.setCell(2, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(2, 3, 1233);
+data.setCell(2, 1, 'RemoveItemFromCart')
+data.setCell(2, 2, 'integration.Cart.StandardUser')
+data.setCell(2, 3, 517);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'DescriptionPage_open')
-data.setCell(3, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(3, 3, 1116);
+data.setCell(3, 1, 'ContinueShoppingFromCart')
+data.setCell(3, 2, 'integration.Cart.StandardUser')
+data.setCell(3, 3, 466);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'only_spaces_FirstName')
-data.setCell(4, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(4, 3, 1004);
+data.setCell(4, 1, 'AddSingleItemToCart')
+data.setCell(4, 2, 'integration.Cart.StandardUser')
+data.setCell(4, 3, 400);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'fields_empty')
-data.setCell(5, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(5, 3, 931);
+data.setCell(5, 1, 'CartBadgeCount')
+data.setCell(5, 2, 'integration.Cart.StandardUser')
+data.setCell(5, 3, 339);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'checkout_IformationPage_open')
-data.setCell(6, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(6, 3, 466);
-data.setCell(7, 0, 7)
-data.setCell(7, 1, 'donot_select_products')
-data.setCell(7, 2, 'OldWork.RemainingPages.Checkout')
-data.setCell(7, 3, 304);
+data.setCell(6, 1, 'CartIsEmptyInitially')
+data.setCell(6, 2, 'integration.Cart.StandardUser')
+data.setCell(6, 3, 27);
 window.suiteTableData['Default_Suite']= { tableData: data, tableDiv: 'times-div-Default_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 7 seconds</span>
+              <span class="suite-total-time">Total running time: 2 seconds</span>
               <div id="times-div-Default_Suite">
               </div> <!-- times-div-Default_Suite -->
             </div> <!-- times-div -->
@@ -363,106 +316,90 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">OldWork.RemainingPages.Checkout</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">integration.Cart.StandardUser</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">checkout_IformationPage_open</span>
-                <span class="method-start">4586 ms</span>
+                <span class="method-name">AddSingleItemToCart</span>
+                <span class="method-start">5073 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">5054 ms</span>
+                <span class="method-start">5475 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">6344 ms</span>
+                <span class="method-start">6233 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">valid_inputs</span>
-                <span class="method-start">11871 ms</span>
+                <span class="method-name">AddMultipleItemsToCart</span>
+                <span class="method-start">10422 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">13105 ms</span>
+                <span class="method-start">11075 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">14347 ms</span>
+                <span class="method-start">11841 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">fields_empty</span>
-                <span class="method-start">17609 ms</span>
+                <span class="method-name">RemoveItemFromCart</span>
+                <span class="method-start">18259 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">18541 ms</span>
+                <span class="method-start">18777 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">19805 ms</span>
+                <span class="method-start">19552 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">only_spaces_FirstName</span>
-                <span class="method-start">23214 ms</span>
+                <span class="method-name">CartBadgeCount</span>
+                <span class="method-start">23638 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">24223 ms</span>
+                <span class="method-start">23978 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">25446 ms</span>
+                <span class="method-start">24735 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">donot_select_products</span>
-                <span class="method-start">28721 ms</span>
+                <span class="method-name">GoToCheckoutFromCart</span>
+                <span class="method-start">29092 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">29026 ms</span>
+                <span class="method-start">29617 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">30262 ms</span>
+                <span class="method-start">30415 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">DescriptionPage_open</span>
-                <span class="method-start">35809 ms</span>
+                <span class="method-name">ContinueShoppingFromCart</span>
+                <span class="method-start">34571 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">36925 ms</span>
+                <span class="method-start">35038 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">openBrowser</span>
-                <span class="method-start">38168 ms</span>
+                <span class="method-start">35801 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">Remove_button</span>
-                <span class="method-start">41811 ms</span>
+                <span class="method-name">CartIsEmptyInitially</span>
+                <span class="method-start">42485 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">43159 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">openBrowser</span>
-                <span class="method-start">44397 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <span class="method-name">Add_products</span>
-                <span class="method-start">48250 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">closeBrowser</span>
-                <span class="method-start">49610 ms</span>
+                <span class="method-start">42513 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
