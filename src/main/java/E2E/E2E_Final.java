@@ -67,7 +67,6 @@ public class E2E_Final {
     public void loginOnce() {
         login("standard_user", "secret_sauce");
     }
-
     @Test(groups = "happy1",priority = 1)
         public void AddProduct(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -307,9 +306,9 @@ public class E2E_Final {
         WebElement firstnamefield = driver.findElement(By.id("first-name"));
         WebElement lastnamefield = driver.findElement(By.id("last-name"));
         WebElement postal_codefield = driver.findElement(By.id("postal-code"));
-        slowType(firstnamefield, "Ziad ", 50);
-        slowType(lastnamefield, "Ahmed ", 50);
-        slowType(postal_codefield, "99999 ", 50);
+        slowType(firstnamefield, "Abdelrahman", 50);
+        slowType(lastnamefield, "Tarek", 50);
+        slowType(postal_codefield, "99999", 50);
         WebElement continuebutton = driver.findElement(By.id("continue"));
         continuebutton.click();
         driver.findElement(By.id("finish")).click();
@@ -375,7 +374,7 @@ public class E2E_Final {
         driver.findElement(By.className("shopping_cart_link")).click();
         driver.findElement(By.id("checkout")).click();
         driver.findElement(By.id("first-name")).sendKeys("Mohamed");
-        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("last-name")).sendKeys("Akram");
         driver.findElement(By.id("postal-code")).sendKeys("35934");
         driver.findElement(By.id("continue")).click();
         driver.findElement(By.id("finish")).click();
@@ -388,8 +387,8 @@ public class E2E_Final {
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.className("shopping_cart_link")).click();
         driver.findElement(By.id("checkout")).click();
-        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
-        driver.findElement(By.id("last-name")).sendKeys("Yasser");
+        driver.findElement(By.id("first-name")).sendKeys("Habiba");
+        driver.findElement(By.id("last-name")).sendKeys("Ragab");
         driver.findElement(By.id("postal-code")).sendKeys("35934");
         driver.findElement(By.id("continue")).click();
         driver.findElement(By.id("finish")).click();

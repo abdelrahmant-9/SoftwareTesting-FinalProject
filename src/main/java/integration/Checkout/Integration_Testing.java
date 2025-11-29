@@ -31,6 +31,7 @@ public class Integration_Testing {
         options.addArguments("--disable-features=SafetyTipUI");
 
         driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
