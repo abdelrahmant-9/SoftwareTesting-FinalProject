@@ -28,7 +28,7 @@ public class StandardUser {
         }
     }
 
-    @BeforeClass
+    @BeforeMethod
     public void openBrowser(){
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
@@ -51,10 +51,10 @@ public class StandardUser {
         driver.findElement(By.id("login-button")).click();
     }
 
-    @BeforeMethod
-    public void smallPause() throws InterruptedException {
-        Thread.sleep(500);
-    }
+    // @BeforeMethod
+    // public void smallPause() throws InterruptedException {
+    //     Thread.sleep(500);
+    // }
 
     @Test(priority = 1)
     public void AddSingleItemToCart(){
@@ -135,9 +135,9 @@ public class StandardUser {
         Assert.assertFalse(badgeExists);
     }
 
-    @AfterClass
+     @AfterMethod
     public void closeBrowser() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(500);
         driver.quit();
     }
 }
