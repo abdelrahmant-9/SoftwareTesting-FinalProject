@@ -393,7 +393,7 @@ public class Integration_Testing {
 
     @AfterMethod
     public void closeBrowser() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(800);
         driver.quit();
     }
 }
