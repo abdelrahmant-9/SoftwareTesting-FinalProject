@@ -1,4 +1,4 @@
-package integration.Checkout;
+package Integration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.HashMap;
 import java.util.Map;
 public class Integration_Testing {
@@ -31,14 +32,14 @@ public class Integration_Testing {
         options.addArguments("--disable-features=SafetyTipUI");
 
         driver = new ChromeDriver(options);
-       // driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.navigate().to("https://www.saucedemo.com/");
     }
 
 
     //Verify successful  Removing products from cart  with username "standard_user"
     @Test (priority = 1 )
-    public void Remove_cart() throws InterruptedException {
+    public void Remove_cart()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -69,7 +70,7 @@ public class Integration_Testing {
 
     //Verify successful removing products from cart product description with username "standard_user"
     @Test (priority = 2 )
-    public void Remove_Description() throws InterruptedException {
+    public void Remove_Description()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -99,7 +100,7 @@ public class Integration_Testing {
 
     //verify that once a product is added to the cart Page and then removed, access to the Checkout page is disabled with username "standard_user"
     @Test (priority = 3)
-    public void checkout_close () throws InterruptedException {
+    public void checkout_close ()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -121,7 +122,7 @@ public class Integration_Testing {
 
     //verify that once a product is added to the cart Page and then removed from checkout Overview description page, it removed from cart, with username "standard_user"
     @Test (priority =  4)
-    public void product_removed () throws InterruptedException {
+    public void product_removed ()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -147,7 +148,7 @@ public class Integration_Testing {
 
     //verify that number of products updated when remove product from checkout overview description page with username "standard_user"
     @Test (priority = 5)
-    public void cart_count () throws InterruptedException {
+    public void cart_count ()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -172,7 +173,7 @@ public class Integration_Testing {
 
     //verify that number of products updated when remove product from cart description page with username "standard_user"
     @Test (priority = 6)
-    public void cart_count2 () throws InterruptedException {
+    public void cart_count2 ()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -191,7 +192,7 @@ public class Integration_Testing {
 
     //verify that total price updated after removing products with username "standard_user"
     @Test (priority = 7)
-    public void update_price () throws InterruptedException {
+    public void update_price ()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -223,7 +224,7 @@ public class Integration_Testing {
 
     //verify that cart empty after checkout process complete with username "standard_user"
     @Test (priority = 8)
-    public void cart_empty() throws InterruptedException {
+    public void cart_empty()   {
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -246,7 +247,7 @@ public class Integration_Testing {
 
     //Verify successful  Removing products from cart  with username: locked_out_user
     @Test (priority = 9 )
-    public void Remove_cart2() throws InterruptedException {
+    public void Remove_cart2()   {
         driver.findElement(By.id("user-name")).sendKeys("locked_out_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -277,7 +278,7 @@ public class Integration_Testing {
 
     //Verify successful  Removing products from cart  with username: problem_user
     @Test (priority = 10 )
-    public void Remove_cart3() throws InterruptedException {
+    public void Remove_cart3()   {
         driver.findElement(By.id("user-name")).sendKeys("problem_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -305,7 +306,7 @@ public class Integration_Testing {
 
     //Verify successful  Removing products from cart  with username: performance_glitch_user
     @Test (priority = 11 )
-    public void Remove_cart4() throws InterruptedException {
+    public void Remove_cart4()   {
         driver.findElement(By.id("user-name")).sendKeys("performance_glitch_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -337,7 +338,7 @@ public class Integration_Testing {
 
     //Verify successful  Removing products from cart  with username: error_user
     @Test (priority = 12 )
-    public void Remove_cart5() throws InterruptedException {
+    public void Remove_cart5()   {
         driver.findElement(By.id("user-name")).sendKeys("error_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -365,7 +366,7 @@ public class Integration_Testing {
 
     //Verify successful  Removing products from cart  with username: visual_user
     @Test (priority = 13 )
-    public void Remove_cart6() throws InterruptedException {
+    public void Remove_cart6()   {
         driver.findElement(By.id("user-name")).sendKeys("visual_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
