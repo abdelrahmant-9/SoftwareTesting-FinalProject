@@ -61,9 +61,9 @@ public class StandardUser {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
         driver.findElement(By.id("shopping_cart_container")).click();
-        WebElement item = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.linkText("Sauce Labs Bike Light")));
-        Assert.assertTrue(item.isDisplayed());
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "1");
     }
 
     @Test(priority = 2)
