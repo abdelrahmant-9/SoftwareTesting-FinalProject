@@ -173,11 +173,13 @@ public class Integration_Testcases {
         slowType(passwordfield, "secret_sauce", 50);
         loginbutton.click();
         Thread.sleep(1000);
+        WebElement pricebefore = driver.findElement(By.className("inventory_item_price"));
+        String actualprice = pricebefore.getText();
         WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div"));
         Sauce_Labs_Backpackbtn.click();
-        WebElement wrongprice = driver.findElement(By.xpath("//*[@id=\"inventory_container\"]/div/div[1]/div[2]/div[2]/div"));
+        WebElement wrongprice = driver.findElement(By.className("inventory_details_price"));
         String wrongpriceText = wrongprice.getText();
-        Assert.assertEquals(wrongpriceText, "$29.99");
+        Assert.assertEquals(wrongpriceText, actualprice);
     }
 @Test(priority=7)
 public void nameMismatch_problemuser() throws InterruptedException {
