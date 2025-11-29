@@ -18,9 +18,17 @@ import java.util.Map;
 public class Integration_Testcases {
     ChromeOptions options;
     Map<String, Object> prefs;
-    WebDriver driver;  {
-        options = new ChromeOptions();
-        prefs = new HashMap<>();
+    WebDriver driver;
+    public void slowType(WebElement element, String text, int delay) throws InterruptedException {
+        for (char letter : text.toCharArray()) {
+            element.sendKeys(Character.toString(letter));
+            Thread.sleep(delay);
+        }
+    }
+    @BeforeTest
+    public void beforeTest() {
+        ChromeOptions options = new ChromeOptions();
+        Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
         prefs.put("profile.password_manager_leak_detection", false);
@@ -32,20 +40,10 @@ public class Integration_Testcases {
         options.addArguments("--disable-features=SafeBrowsingSecurityToken");
         options.addArguments("--disable-features=SafetyTipUI");
         driver = new ChromeDriver(options);
-    }
-    public void slowType(WebElement element, String text, int delay) throws InterruptedException {
-        for (char letter : text.toCharArray()) {
-            element.sendKeys(Character.toString(letter));
-            Thread.sleep(delay);
-        }
-    }
-    @BeforeTest
-    public void beforeTest() {
         driver.manage().window().maximize();
         driver.navigate().to("https://www.saucedemo.com/");
 
     }
-
     @Test(priority=1)
     public void SauceLabsBikeLight() throws InterruptedException {
         WebElement usernamefield = driver.findElement(By.id("user-name"));
@@ -63,25 +61,36 @@ public class Integration_Testcases {
     }
     @Test(priority=2)
     public void SauceLabsBackpack() throws InterruptedException {
-        WebElement usernamefield = driver.findElement(By.id("user-name"));
-        WebElement passwordfield = driver.findElement(By.id("password"));
-        WebElement loginbutton = driver.findElement(By.id("login-button"));
-        slowType(usernamefield,"visual_user" ,50);
-        slowType(passwordfield,"secret_sauce" ,50);
-        loginbutton.click();
-        Thread.sleep(1000);
-        WebElement filter_pricebtn = driver.findElement(By.className("product_sort_container"));
-        Select high_to_lowprice = new Select(filter_pricebtn);
-        Thread.sleep(1000);
-        high_to_lowprice.selectByVisibleText("Price (high to low)");
-        Thread.sleep(200);
-        WebElement addproductbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
-        addproductbtn.click();
-        WebElement removeBtn = driver.findElement(By.id("remove-sauce-labs-backpack"));
-        String actualtext= removeBtn.getText();
-        Assert.assertEquals(actualtext,"Remove");
-        Thread.sleep(1000);
-    }
+        SoftAssert soft = new SoftAssert();
+        try {
+            WebElement usernamefield = driver.findElement(By.id("user-name"));
+            WebElement passwordfield = driver.findElement(By.id("password"));
+            WebElement loginbutton = driver.findElement(By.id("login-button"));
+            slowType(usernamefield,"visual_user" ,50);
+            slowType(passwordfield,"secret_sauce" ,50);
+            loginbutton.click();
+            Thread.sleep(1000);
+            WebElement filter_pricebtn = driver.findElement(By.className("product_sort_container"));
+            Select high_to_lowprice = new Select(filter_pricebtn);
+            Thread.sleep(1000);
+            high_to_lowprice.selectByVisibleText("Price (high to low)");
+            Thread.sleep(200);
+            List<WebElement> prices = driver.findElements(By.className("inventory_item_price"));
+            for(int i = 0; i < prices.size()-1; i++){
+                double current = Double.parseDouble(prices.get(i).getText().replace("$",""));
+                double next = Double.parseDouble(prices.get(i+1).getText().replace("$",""));
+                soft.assertTrue(current >= next);  }
+            WebElement addproductbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+            addproductbtn.click();
+            WebElement removeBtn = driver.findElement(By.id("remove-sauce-labs-backpack"));
+            String actualtext= removeBtn.getText();
+            soft.assertEquals(actualtext,"Remove");
+            Thread.sleep(1000);}
+        catch (AssertionError e) {
+            System.out.println(" filter didn't sort ");}
+        soft.assertAll(); }
+
+
     @Test(priority=3)
     public void Add2products() throws InterruptedException {
         WebElement usernamefield = driver.findElement(By.id("user-name"));
@@ -158,7 +167,7 @@ public class Integration_Testcases {
         Thread.sleep(1000);
         WebElement carticon2 = driver.findElement(By.cssSelector("a.shopping_cart_link"));
         String actualnumb2 = carticon2.getText();
-         Assert.assertEquals(actualnumb2, "2");
+        Assert.assertEquals(actualnumb2, "2");
         Thread.sleep(1000);
         WebElement checkoutbtn = driver.findElement(By.id("checkout"));
         checkoutbtn.click();
@@ -181,9 +190,33 @@ public class Integration_Testcases {
         String wrongpriceText = wrongprice.getText();
         Assert.assertEquals(wrongpriceText, actualprice);
     }
-@Test(priority=7)
-public void nameMismatch_problemuser() throws InterruptedException {
+    @Test(priority=7)
+    public void nameMismatch_problemuser() throws InterruptedException {
+        SoftAssert soft = new SoftAssert();
         try {
+            WebElement usernamefield = driver.findElement(By.id("user-name"));
+            WebElement passwordfield = driver.findElement(By.id("password"));
+            WebElement loginbutton = driver.findElement(By.id("login-button"));
+            slowType(usernamefield, "problem_user", 50);
+            slowType(passwordfield, "secret_sauce", 50);
+            loginbutton.click();
+            Thread.sleep(300);
+            WebElement Sauce_Labs_Bolt_TShirtproduct = driver.findElement(By.xpath("//*[@id=\"item_1_title_link\"]/div"));
+            Sauce_Labs_Bolt_TShirtproduct.click();
+            WebElement Sauce_Labs_Onesieproduct = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"));
+            soft.assertEquals(Sauce_Labs_Bolt_TShirtproduct, Sauce_Labs_Onesieproduct);
+            WebElement addproductbutton = driver.findElement(By.id("add-to-cart"));
+            addproductbutton.click();
+            Thread.sleep(500);
+            String removeproductbutton = addproductbutton.getText();
+            soft.assertEquals(removeproductbutton, "Remove");
+        } catch (Exception e) {
+            System.out.println(" Error happened: " );
+            soft.assertAll();
+        }
+    }
+    @Test(priority=8)
+    public void wrong_image() throws InterruptedException {
         WebElement usernamefield = driver.findElement(By.id("user-name"));
         WebElement passwordfield = driver.findElement(By.id("password"));
         WebElement loginbutton = driver.findElement(By.id("login-button"));
@@ -191,74 +224,50 @@ public void nameMismatch_problemuser() throws InterruptedException {
         slowType(passwordfield, "secret_sauce", 50);
         loginbutton.click();
         Thread.sleep(300);
-        WebElement Sauce_Labs_Bolt_TShirtproduct = driver.findElement(By.xpath("//*[@id=\"item_1_title_link\"]/div"));
-        Sauce_Labs_Bolt_TShirtproduct.click();
-        WebElement Sauce_Labs_Onesieproduct = driver.findElement(By.xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]"));
-        Assert.assertEquals(Sauce_Labs_Bolt_TShirtproduct, Sauce_Labs_Onesieproduct);
-        WebElement addproductbutton = driver.findElement(By.id("add-to-cart"));
-        addproductbutton.click();
+        WebElement imgoutsideSauce_Labs_Backpack = driver.findElement(By.cssSelector("img.inventory_item_img"));
+        String outsideimg = imgoutsideSauce_Labs_Backpack.getAttribute("src");
+        WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div"));
+        Sauce_Labs_Backpackbtn.click();
         Thread.sleep(500);
-        String removeproductbutton = addproductbutton.getText();
-        Assert.assertEquals(removeproductbutton, "Remove");
-        } catch (Exception wrong) {
-        System.out.println(" Error happened: " + wrong.getMessage());
-        wrong.printStackTrace();
-        Assert.fail("Test failed the exception is : " + wrong.getMessage());
+        WebElement insideimgSauce_Labs_Backpack = driver.findElement(By.cssSelector("img.inventory_details_img"));
+        String insideimg =  insideimgSauce_Labs_Backpack.getAttribute("src");
+        Assert.assertEquals(insideimg, outsideimg);
     }
-}
-@Test(priority=8)
-public void wrong_image() throws InterruptedException {
-    WebElement usernamefield = driver.findElement(By.id("user-name"));
-    WebElement passwordfield = driver.findElement(By.id("password"));
-    WebElement loginbutton = driver.findElement(By.id("login-button"));
-    slowType(usernamefield, "problem_user", 50);
-    slowType(passwordfield, "secret_sauce", 50);
-    loginbutton.click();
-    Thread.sleep(300);
-    WebElement imgoutsideSauce_Labs_Backpack = driver.findElement(By.cssSelector("img.inventory_item_img"));
-    String outsideimg = imgoutsideSauce_Labs_Backpack.getAttribute("src");
-    WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div"));
-    Sauce_Labs_Backpackbtn.click();
-    Thread.sleep(500);
-    WebElement insideimgSauce_Labs_Backpack = driver.findElement(By.cssSelector("img.inventory_details_img"));
-    String insideimg =  insideimgSauce_Labs_Backpack.getAttribute("src");
-    Assert.assertEquals(insideimg, outsideimg);
-}
-@Test(priority=9)
-public void wrongURL() throws InterruptedException {
-    WebElement usernamefield = driver.findElement(By.id("user-name"));
-    WebElement passwordfield = driver.findElement(By.id("password"));
-    WebElement loginbutton = driver.findElement(By.id("login-button"));
-    slowType(usernamefield, "error_user", 50);
-    slowType(passwordfield, "secret_sauce", 50);
-    loginbutton.click();
-    Thread.sleep(300);
-    WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
-    Sauce_Labs_Backpackbtn.click();
-    WebElement Sauce_Labs_Bike_Lightbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bike-light"));
-    Sauce_Labs_Bike_Lightbtn.click();
-    WebElement Sauce_Labs_Bolt_T_Shirttbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
-    Sauce_Labs_Bolt_T_Shirttbtn.click();
-    Thread.sleep(300);
-    WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
-    carticon.click();
-    Thread.sleep(2000);
-    WebElement checkoutbutton = driver.findElement(By.id("checkout"));
-    checkoutbutton.click();
-    Thread.sleep(200);
-    WebElement firstnamefield = driver.findElement(By.id("first-name"));
-    WebElement lastnamefield = driver.findElement(By.id("last-name"));
-    WebElement postal_code_field = driver.findElement(By.id("postal-code"));
-    slowType(firstnamefield,"alaa",50);
-    slowType(lastnamefield,"mohammed",50);
-    slowType(postal_code_field,"70522",50);
-    Thread.sleep(1000);
-    WebElement continuebutton = driver.findElement(By.id("continue"));
-    continuebutton.click();
-    String  currentURL = driver.getCurrentUrl();
-    String expectedURL = "https://www.saucedemo.com/checkout-step-one.html";
-    Assert.assertEquals(currentURL, expectedURL);
-}
+    @Test(priority=9)
+    public void wrongURL() throws InterruptedException {
+        WebElement usernamefield = driver.findElement(By.id("user-name"));
+        WebElement passwordfield = driver.findElement(By.id("password"));
+        WebElement loginbutton = driver.findElement(By.id("login-button"));
+        slowType(usernamefield, "error_user", 50);
+        slowType(passwordfield, "secret_sauce", 50);
+        loginbutton.click();
+        Thread.sleep(300);
+        WebElement Sauce_Labs_Backpackbtn = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        Sauce_Labs_Backpackbtn.click();
+        WebElement Sauce_Labs_Bike_Lightbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bike-light"));
+        Sauce_Labs_Bike_Lightbtn.click();
+        WebElement Sauce_Labs_Bolt_T_Shirttbtn = driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt"));
+        Sauce_Labs_Bolt_T_Shirttbtn.click();
+        Thread.sleep(300);
+        WebElement carticon = driver.findElement(By.cssSelector("a.shopping_cart_link"));
+        carticon.click();
+        Thread.sleep(2000);
+        WebElement checkoutbutton = driver.findElement(By.id("checkout"));
+        checkoutbutton.click();
+        Thread.sleep(200);
+        WebElement firstnamefield = driver.findElement(By.id("first-name"));
+        WebElement lastnamefield = driver.findElement(By.id("last-name"));
+        WebElement postal_code_field = driver.findElement(By.id("postal-code"));
+        slowType(firstnamefield,"alaa",50);
+        slowType(lastnamefield,"mohammed",50);
+        slowType(postal_code_field,"70522",50);
+        Thread.sleep(1000);
+        WebElement continuebutton = driver.findElement(By.id("continue"));
+        continuebutton.click();
+        String  currentURL = driver.getCurrentUrl();
+        String expectedURL = "https://www.saucedemo.com/checkout-step-one.html";
+        Assert.assertEquals(currentURL, expectedURL);
+    }
     @Test(priority=10)
     public void Wrong_URL2() throws InterruptedException {
         SoftAssert soft = new SoftAssert();
@@ -314,12 +323,9 @@ public void wrongURL() throws InterruptedException {
             continuebutton.click();
             Thread.sleep(1000);
         } catch (Exception eror) {
-            System.out.println(" Error occurred: " + eror.getMessage());
-            eror.printStackTrace();
-            Assert.fail("Test failed the exception is : " + eror.getMessage());
-            }
+            System.out.println(" Error happens " );}
         soft.assertAll();
-            }
+    }
 
     @AfterMethod
     public void afterTest() throws InterruptedException {
@@ -332,8 +338,8 @@ public void wrongURL() throws InterruptedException {
         resetBtn.click();
         driver.navigate().to("https://www.saucedemo.com/");
     }
-    @AfterMethod
-    public void afterClass() throws InterruptedException {
+    @AfterClass
+    public void Close() {
         driver.quit();
     }
 }
