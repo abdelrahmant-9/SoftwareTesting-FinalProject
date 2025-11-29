@@ -330,6 +330,10 @@ public void wrongURL() throws InterruptedException {
         resetBtn.click();
         driver.navigate().to("https://www.saucedemo.com/");
     }
+    @AfterClass
+    public void afterClass() throws InterruptedException {
+        driver.quit();
+    }
 }
 
 
