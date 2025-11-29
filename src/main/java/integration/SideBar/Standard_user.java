@@ -177,7 +177,7 @@ public class Standard_user {
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/");
     }
     @Test
-    public void ReseCcart(){
+    public void Resetcart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();

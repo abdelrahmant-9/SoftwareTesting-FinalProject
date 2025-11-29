@@ -28,7 +28,7 @@ public class StandardUser {
         }
     }
 
-    @BeforeMethod
+    @BeforeClass
     public void openBrowser(){
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
@@ -51,7 +51,12 @@ public class StandardUser {
         driver.findElement(By.id("login-button")).click();
     }
 
-    @Test
+    @BeforeMethod
+    public void smallPause() throws InterruptedException {
+        Thread.sleep(500);
+    }
+
+    @Test(priority = 1)
     public void AddSingleItemToCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
@@ -61,7 +66,7 @@ public class StandardUser {
         Assert.assertTrue(item.isDisplayed());
     }
 
-    @Test
+    @Test(priority = 2)
     public void AddMultipleItemsToCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
@@ -77,7 +82,7 @@ public class StandardUser {
         Assert.assertTrue(item2.isDisplayed());
     }
 
-    @Test
+    @Test(priority = 3)
     public void RemoveItemFromCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
@@ -88,7 +93,7 @@ public class StandardUser {
         Assert.assertFalse(exists);
     }
 
-    @Test
+    @Test(priority = 4)
     public void CartBadgeCount(){
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
@@ -97,7 +102,7 @@ public class StandardUser {
         Assert.assertEquals(badge.getText(), "2");
     }
 
-    @Test
+    @Test(priority = 5)
     public void GoToCheckoutFromCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
@@ -110,7 +115,7 @@ public class StandardUser {
         Assert.assertEquals(checkoutTitle.getText(), "Checkout: Your Information");
     }
 
-    @Test
+    @Test(priority = 6)
     public void ContinueShoppingFromCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
@@ -121,13 +126,13 @@ public class StandardUser {
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"));
     }
 
-    @Test
+    @Test(priority = 7)
     public void CartIsEmptyInitially(){
         boolean badgeExists = isElementPresent(By.className("shopping_cart_badge"));
         Assert.assertFalse(badgeExists);
     }
 
-    @AfterMethod
+    @AfterClass
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(2000);
         driver.quit();
