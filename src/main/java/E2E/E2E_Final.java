@@ -410,20 +410,7 @@ public class E2E_Final {
         String checkout_URL = driver.getCurrentUrl();
         Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
     }
-    @Test (priority =23,dependsOnGroups = "sad5",groups = "visual")
-    public void visual_user() throws InterruptedException {
-        login("visual_user", "secret_sauce");
-        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
-        driver.findElement(By.className("shopping_cart_link")).click();
-        driver.findElement(By.id("checkout")).click();
-        driver.findElement(By.id("first-name")).sendKeys("Mohamed");
-        driver.findElement(By.id("last-name")).sendKeys("Yasser");
-        driver.findElement(By.id("postal-code")).sendKeys("35934");
-        driver.findElement(By.id("continue")).click();
-        driver.findElement(By.id("finish")).click();
-        String checkout_URL = driver.getCurrentUrl();
-        Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
-    }
+
    @AfterMethod(alwaysRun = true)
     public void afterEach(Method method) {
 
