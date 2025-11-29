@@ -72,12 +72,13 @@ public class StandardUser {
         driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
         driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
         driver.findElement(By.id("shopping_cart_container")).click();
-
         WebElement item1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.linkText("Sauce Labs Bike Light")));
         WebElement item2 = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.linkText("Sauce Labs Bolt T-Shirt")));
-
+        WebElement cart_no = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
+                xpath("//*[@id=\"shopping_cart_container\"]/a/span")));
+        Assert.assertEquals(cart_no.getText(), "2");
         Assert.assertTrue(item1.isDisplayed());
         Assert.assertTrue(item2.isDisplayed());
     }
