@@ -201,7 +201,7 @@ public class E2E_Final {
             Assert.assertNotEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/checkout-step-one.html");
         }
         catch (AssertionError e){
-            System.out.println("AssertionError for empty cart ");
+            System.out.println("AssertionError for empty cart is empty \n error case 14");
         }
         slowType(firstnamefield, "alaa", 50);
         slowType(lastnamefield, "Ali", 50);
@@ -274,7 +274,7 @@ public class E2E_Final {
             Assert.assertNotEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/checkout-step-two.html");
         }
         catch (AssertionError e){
-            System.out.println("fields can't be empty");
+            System.out.println("fields can't be empty please enter a valid name and username.\n error case 16");
         }
         WebElement finishbutton = driver.findElement(By.id("finish"));
         finishbutton.click();
@@ -355,7 +355,7 @@ public class E2E_Final {
             String checkout_URL = driver.getCurrentUrl();
             Assert.assertNotEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
         } catch (AssertionError e) {
-            System.out.println("ERROR Cart empty ");
+            System.out.println("ERROR Cart can't be empty \n error case 19");
         }
     }
     @Test (priority = 20,groups = "sad5",dependsOnGroups = "sad4")
@@ -374,7 +374,7 @@ public class E2E_Final {
             Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
         }catch (AssertionError e){
             System.out.println("fields can't be empty please enter firts and last name and postal code  " +
-                    "/n error case 20 ");
+                     "\n error case 20 ");
         }
         driver.findElement(By.className("shopping_cart_link")).click();
         driver.findElement(By.id("checkout")).click();
