@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>TestNG Report</title>
+<style type="text/css">table {margin-bottom:10px;border-collapse:collapse;empty-cells:show}th,td {border:1px solid #009;padding:.25em .5em}th {vertical-align:bottom}td {vertical-align:top}table a {font-weight:bold}.stripe td {background-color: #E6EBF9}.num {text-align:right}.passedodd td {background-color: #3F3}.passedeven td {background-color: #0A0}.skippedodd td {background-color: #DDD}.skippedeven td {background-color: #CCC}.failedodd td,.attn {background-color: #F33}.failedeven td,.stripe .attn {background-color: #D00}.stacktrace {white-space:pre;font-family:monospace}.totop {font-size:85%;text-align:center;border-bottom:2px solid #000}.invisible {display:none}</style>
+</head>
+<body>
+<table>
+<tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
+<tr><th colspan="8">Default Suite</th></tr>
+<tr><td><a href="#t0">SoftwareTesting-FinalProject-main</a></td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num attn">6</td><td class="num">74,702</td><td></td><td></td></tr>
+</table>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">SoftwareTesting-FinalProject-main &#8212; failed</th></tr><tr class="failedeven"><td rowspan="6">integration.Login.Integration_Testcases</td><td><a href="#m0">SauceLabsBackpack</a></td><td rowspan="1">1764453664665</td><td rowspan="1">4945</td></tr><tr class="failedeven"><td><a href="#m1">Wrong_URL2</a></td><td rowspan="1">1764453715821</td><td rowspan="1">13501</td></tr><tr class="failedeven"><td><a href="#m2">Wrongprice_within_product</a></td><td rowspan="1">1764453695249</td><td rowspan="1">2619</td></tr><tr class="failedeven"><td><a href="#m3">nameMismatch_problemuser</a></td><td rowspan="1">1764453699466</td><td rowspan="1">2490</td></tr><tr class="failedeven"><td><a href="#m4">wrongURL</a></td><td rowspan="1">1764453707603</td><td rowspan="1">6625</td></tr><tr class="failedeven"><td><a href="#m5">wrong_image</a></td><td rowspan="1">1764453703545</td><td rowspan="1">2468</td></tr><tr><th colspan="4">SoftwareTesting-FinalProject-main &#8212; passed</th></tr><tr class="passedeven"><td rowspan="4">integration.Login.Integration_Testcases</td><td><a href="#m6">Add2products</a></td><td rowspan="1">1764453671209</td><td rowspan="1">4721</td></tr><tr class="passedeven"><td><a href="#m7">SauceLabsBikeLight</a></td><td rowspan="1">1764453659345</td><td rowspan="1">3679</td></tr><tr class="passedeven"><td><a href="#m8">productDetails</a></td><td rowspan="1">1764453677527</td><td rowspan="1">6695</td></tr><tr class="passedeven"><td><a href="#m9">startcheckout</a></td><td rowspan="1">1764453685819</td><td rowspan="1">7830</td></tr></tbody>
+</table>
+<h2>SoftwareTesting-FinalProject-main</h2><h3 id="m0">integration.Login.Integration_Testcases#SauceLabsBackpack</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: The following asserts failed:
+	expected [true] but found [false],
+	expected [true] but found [false]
+	at integration.Login.Integration_Testcases.SauceLabsBackpack(Integration_Testcases.java:93)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 24 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">integration.Login.Integration_Testcases#Wrong_URL2</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: The following asserts failed:
+	expected [https://www.saucedemo.com/cart.html] but found [https://www.saucedemo.com/checkout-step-one.html]
+	at integration.Login.Integration_Testcases.Wrong_URL2(Integration_Testcases.java:329)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 24 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">integration.Login.Integration_Testcases#Wrongprice_within_product</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: expected [$1.48] but found [$29.99]
+	at integration.Login.Integration_Testcases.Wrongprice_within_product(Integration_Testcases.java:193)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">integration.Login.Integration_Testcases#nameMismatch_problemuser</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: The following asserts failed:
+	expected [[[ChromeDriver: chrome on windows (c89e8db01773ffef659b814847453658)] -&gt; xpath: //*[@id=&quot;inventory_item_container&quot;]/div/div/div[2]/div[1]]] but found [[[ChromeDriver: chrome on windows (c89e8db01773ffef659b814847453658)] -&gt; xpath: //*[@id=&quot;item_1_title_link&quot;]/div]]
+	at integration.Login.Integration_Testcases.nameMismatch_problemuser(Integration_Testcases.java:217)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 24 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">integration.Login.Integration_Testcases#wrongURL</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: expected [https://www.saucedemo.com/checkout-step-one.html] but found [https://www.saucedemo.com/checkout-step-two.html]
+	at integration.Login.Integration_Testcases.wrongURL(Integration_Testcases.java:271)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">integration.Login.Integration_Testcases#wrong_image</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: expected [https://www.saucedemo.com/static/media/sl-404.168b1cce10384b857a6f.jpg] but found [https://www.saucedemo.com/static/media/sauce-pullover-1200x1500.51d7ffaf301e698772c8.jpg]
+	at integration.Login.Integration_Testcases.wrong_image(Integration_Testcases.java:236)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 28 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">integration.Login.Integration_Testcases#Add2products</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">integration.Login.Integration_Testcases#SauceLabsBikeLight</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m8">integration.Login.Integration_Testcases#productDetails</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m9">integration.Login.Integration_Testcases#startcheckout</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+</body>
+</html>

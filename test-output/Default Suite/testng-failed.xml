@@ -3,17 +3,14 @@
 <suite name="Failed suite [Default Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="SwagLabs-Automation(failed)">
     <classes>
-      <class name="integration.SideBar.Standard_user">
+      <class name="OldWork.RemainingPages.Checkout">
         <methods>
           <include name="closeBrowser"/>
-          <include name="ResetHome"/>
-          <include name="Resetcart"/>
-          <include name="LoginAfterLogoutDifferentUser"/>
-          <include name="ResetAfterAddProduct"/>
           <include name="openBrowser"/>
-          <include name="ResetCheckout"/>
+          <include name="only_spaces_FirstName"/>
+          <include name="donot_select_products"/>
         </methods>
-      </class> <!-- integration.SideBar.Standard_user -->
+      </class> <!-- OldWork.RemainingPages.Checkout -->
     </classes>
   </test> <!-- SwagLabs-Automation(failed) -->
 </suite> <!-- Failed suite [Default Suite] -->
