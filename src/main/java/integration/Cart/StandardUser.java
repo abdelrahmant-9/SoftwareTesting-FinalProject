@@ -28,7 +28,7 @@ public class StandardUser {
         }
     }
 
-    @BeforeClass
+    @BeforeMethod
     public void openBrowser(){
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
@@ -63,7 +63,6 @@ public class StandardUser {
         driver.findElement(By.id("shopping_cart_container")).click();
         WebElement item = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.linkText("Sauce Labs Bike Light")));
-        Assert.assertTrue(item.isDisplayed());
     }
 
     @Test(priority = 2)
@@ -132,7 +131,7 @@ public class StandardUser {
         Assert.assertFalse(badgeExists);
     }
 
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(2000);
         driver.quit();
