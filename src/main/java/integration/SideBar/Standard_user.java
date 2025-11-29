@@ -391,7 +391,7 @@ public class Standard_user {
 
     @AfterMethod
     public void closeBrowser() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.close();
     }
 }

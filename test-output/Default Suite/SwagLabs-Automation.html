@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>SwagLabs-Automation</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>21/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>18/5/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Nov 29 23:43:01 EET 2025</td>
+<td>Started on:</td><td>Sat Nov 29 23:52:46 EET 2025</td>
 </tr>
-<tr><td>Total time:</td><td>45 seconds (45588 ms)</td>
+<tr><td>Total time:</td><td>241 seconds (241035 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,21 +76,21 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='E2E.E2E_Final.error_user()'><b>error_user</b><br>Test class: E2E.E2E_Final</td>
-<td><div><pre>java.lang.AssertionError: expected [https://www.saucedemo.com/checkout-complete.html] but found [https://www.saucedemo.com/checkout-step-two.html]
-	at E2E.E2E_Final.error_user(E2E_Final.java:415)
+<td title='integration.SideBar.Standard_user.ResetHome()'><b>ResetHome</b><br>Test class: integration.SideBar.Standard_user</td>
+<td><div><pre>java.lang.AssertionError: expected [Add to cart] but found [Remove]
+	at integration.SideBar.Standard_user.ResetHome(Standard_user.java:139)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
 	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
-... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace61041877", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace61041877'><pre>java.lang.AssertionError: expected [https://www.saucedemo.com/checkout-complete.html] but found [https://www.saucedemo.com/checkout-step-two.html]
+... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1504987044", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1504987044'><pre>java.lang.AssertionError: expected [Add to cart] but found [Remove]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1590)
 	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
 	at org.testng.Assert.assertEquals(Assert.java:132)
 	at org.testng.Assert.assertEquals(Assert.java:656)
 	at org.testng.Assert.assertEquals(Assert.java:666)
-	at E2E.E2E_Final.error_user(E2E_Final.java:415)
+	at integration.SideBar.Standard_user.ResetHome(Standard_user.java:139)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -118,7 +118,232 @@ function toggleAllBoxes() {
 	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
 </pre></div></td>
 <td>1</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.LoginAfterLogoutDifferentUser()'><b>LoginAfterLogoutDifferentUser</b><br>Test class: integration.SideBar.Standard_user</td>
+<td><div><pre>java.lang.AssertionError: expected [0] but found [2]
+	at integration.SideBar.Standard_user.LoginAfterLogoutDifferentUser(Standard_user.java:115)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace683573228", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace683573228'><pre>java.lang.AssertionError: expected [0] but found [2]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at org.testng.Assert.assertEquals(Assert.java:666)
+	at integration.SideBar.Standard_user.LoginAfterLogoutDifferentUser(Standard_user.java:115)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre></div></td>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.Resetcart()'><b>Resetcart</b><br>Test class: integration.SideBar.Standard_user</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //*[@id=&quot;shopping_cart_container&quot;]/a/span (tried for 20 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at integration.SideBar.Standard_user.Resetcart(Standard_user.java:189)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@id=&quot;shopping_cart_container&quot;]/a/span&quot;}
+  (Session info: chrome=142.0.7444.176)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.26.0&apos;, revision: &apos;8ccf0219d7&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [00eb4b74ecc8e7f00dd01b517689e7e6, findElement {using=xpath, value=//*[@id=&quot;shopping_cart_container&quot;]/a/span}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.176, chrome: {chromedriverVersion: 142.0.7444.175 (302067f14a4..., userDataDir: C:\Users\SOFTLA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57440}, goog:processID: 26792, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57440/devtoo..., se:cdpVersion: 142.0.7444.176, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 00eb4b74ecc8e7f00dd01b517689e7e6
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	... 26 more
+... Removed 25 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace724270652", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace724270652'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //*[@id=&quot;shopping_cart_container&quot;]/a/span (tried for 20 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at integration.SideBar.Standard_user.Resetcart(Standard_user.java:189)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@id=&quot;shopping_cart_container&quot;]/a/span&quot;}
+  (Session info: chrome=142.0.7444.176)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: &apos;4.26.0&apos;, revision: &apos;8ccf0219d7&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;25&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [00eb4b74ecc8e7f00dd01b517689e7e6, findElement {using=xpath, value=//*[@id=&quot;shopping_cart_container&quot;]/a/span}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.176, chrome: {chromedriverVersion: 142.0.7444.175 (302067f14a4..., userDataDir: C:\Users\SOFTLA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57440}, goog:processID: 26792, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57440/devtoo..., se:cdpVersion: 142.0.7444.176, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 00eb4b74ecc8e7f00dd01b517689e7e6
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	... 26 more
+</pre></div></td>
+<td>21</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.ResetCheckout()'><b>ResetCheckout</b><br>Test class: integration.SideBar.Standard_user</td>
+<td><div><pre>java.lang.AssertionError: expected [] but found [mohamed]
+	at integration.SideBar.Standard_user.ResetCheckout(Standard_user.java:238)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1557020887", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1557020887'><pre>java.lang.AssertionError: expected [] but found [mohamed]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at org.testng.Assert.assertEquals(Assert.java:666)
+	at integration.SideBar.Standard_user.ResetCheckout(Standard_user.java:238)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre></div></td>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.ResetAfterAddProduct()'><b>ResetAfterAddProduct</b><br>Test class: integration.SideBar.Standard_user</td>
+<td><div><pre>java.lang.AssertionError: expected [Add to cart] but found [Remove]
+	at integration.SideBar.Standard_user.ResetAfterAddProduct(Standard_user.java:372)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+... Removed 28 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1549377783", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1549377783'><pre>java.lang.AssertionError: expected [Add to cart] but found [Remove]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1590)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+	at org.testng.Assert.assertEquals(Assert.java:132)
+	at org.testng.Assert.assertEquals(Assert.java:656)
+	at org.testng.Assert.assertEquals(Assert.java:666)
+	at integration.SideBar.Standard_user.ResetAfterAddProduct(Standard_user.java:372)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+	at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+</pre></div></td>
+<td>2</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -129,110 +354,95 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='E2E.E2E_Final.success_process3()'><b>success_process3</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.Aboutcart()'><b>Aboutcart</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>4</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>5</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.GotoCartAgain()'><b>GotoCartAgain</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.BackToHome()'><b>BackToHome</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.ViewandAdd()'><b>ViewandAdd</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.removeProduct()'><b>removeProduct</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.wrong_process()'><b>wrong_process</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>3</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.Remove_products2()'><b>Remove_products2</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>3</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.GoToCheckout()'><b>GoToCheckout</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.RemoveFromCart()'><b>RemoveFromCart</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.empty_fields()'><b>empty_fields</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>2</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.AddInformation()'><b>AddInformation</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.wrong_process3()'><b>wrong_process3</b><br>Test class: E2E.E2E_Final</td>
-<td></td>
-<td>6</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
-<tr>
-<td title='E2E.E2E_Final.empty_cart()'><b>empty_cart</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.ResetOverView()'><b>ResetOverView</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
 <td>1</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.Finish()'><b>Finish</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.ResetProductBefor()'><b>ResetProductBefor</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.AddProduct()'><b>AddProduct</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.LoginAfterLogout()'><b>LoginAfterLogout</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.LogOut()'><b>LogOut</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.AllItemsOverView()'><b>AllItemsOverView</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.ViewProduct()'><b>ViewProduct</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.AllItemsCheckOut()'><b>AllItemsCheckOut</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.wrong_process2()'><b>wrong_process2</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.AllItemsProduct()'><b>AllItemsProduct</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.LogOutHome()'><b>LogOutHome</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.LogOutProduct()'><b>LogOutProduct</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.LogOutOverView()'><b>LogOutOverView</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
 <td>2</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.LogIn()'><b>LogIn</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.AllItemsCart()'><b>AllItemsCart</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.GotoCart()'><b>GotoCart</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.LogOutCart()'><b>LogOutCart</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>0</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 <tr>
-<td title='E2E.E2E_Final.performance_glitch_user()'><b>performance_glitch_user</b><br>Test class: E2E.E2E_Final</td>
+<td title='integration.SideBar.Standard_user.AboutProduct()'><b>AboutProduct</b><br>Test class: integration.SideBar.Standard_user</td>
 <td></td>
-<td>7</td>
-<td>E2E.E2E_Final@71d44a3</td></tr>
+<td>6</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.AllItemsHome()'><b>AllItemsHome</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.LogOutCheckout()'><b>LogOutCheckout</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>1</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.AboutCheckOut()'><b>AboutCheckOut</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>6</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.AboutHome()'><b>AboutHome</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>5</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
+<tr>
+<td title='integration.SideBar.Standard_user.AboutOverView()'><b>AboutOverView</b><br>Test class: integration.SideBar.Standard_user</td>
+<td></td>
+<td>6</td>
+<td>integration.SideBar.Standard_user@7f3b84b8</td></tr>
 </table><p>
 </body>
 </html>

@@ -54,9 +54,10 @@ public class Home_Cart_Integration {
 
     @Test(priority = 1)
     public void home_firstItem_cart_remove() {
-        WebElement firstItem = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='inventory_item_name'])[1]")));
-        String name = firstItem.getText();
-        firstItem.click();
+         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"item_4_title_link\"]/div")));
+        String name = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText();
+
+        driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).click();
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@id,'add-to-cart')]"))).click();
 
@@ -73,10 +74,16 @@ public class Home_Cart_Integration {
     public void sortLowToHigh_firstItem_cart_remove() {
         Select sort = new Select(wait.until(ExpectedConditions.elementToBeClickable(By.className("product_sort_container"))));
         sort.selectByVisibleText("Price (low to high)");
+        List<WebElement> prices = driver.findElements(By.className("inventory_item_price"));
+        for(int i = 0; i < prices.size()-1; i++){
+            double current = Double.parseDouble(prices.get(i).getText().replace("$",""));
+            double next = Double.parseDouble(prices.get(i+1).getText().replace("$",""));
+            Assert.assertTrue(current <= next);
+        }
 
-        WebElement first = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='inventory_item_name'])[1]")));
-        String expected = first.getText();
-        first.click();
+         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"item_4_title_link\"]/div")));
+        String expected = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText();
+        driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).click();;
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@id,'add-to-cart')]"))).click();
 
@@ -87,20 +94,22 @@ public class Home_Cart_Integration {
         driver.findElement(By.xpath("//button[contains(@id,'remove')]")).click();
         Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
     }
-
+//error
     @Test(priority = 3)
     public void lastItem_details_cart_remove() {
-        List<WebElement> items = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("inventory_item_name")));
-        WebElement last = items.get(items.size() - 1);
-        String name = last.getText();
-        last.click();
+       // wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("//*[@id=\"inventory_container\"]/div/div[6]/div[2]")));
 
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@id,'add-to-cart')]"))).click();
+        String name = driver.findElement(By.xpath("//*[@id=\"item_3_title_link\"]/div")).getText();
 
+        System.out.println(name);
+        driver.findElement(By.xpath("//*[@id=\"item_3_title_link\"]/div")).click();
+//error with waiting
+       // wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart"))).click();
+        driver.findElement(By.id("add-to-cart")).click();
         driver.findElement(By.id("back-to-products")).click();
 
         driver.findElement(By.className("shopping_cart_link")).click();
-        Assert.assertEquals(driver.findElement(By.className("inventory_item_name")).getText(), name);
+        Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"item_3_title_link\"]/div")).getText(), name);
 
         driver.findElement(By.xpath("//button[contains(@id,'remove')]")).click();
         Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
@@ -118,28 +127,37 @@ public class Home_Cart_Integration {
 
         // Remove all
         for(String p: products){
-            driver.findElement(By.id("remove-" + p)).click();
+            driver.findElement(By.id("remove-" + p)).click();//nice one
         }
 
         Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
     }
     @Test(priority = 5)
-    public void filterAdd_cart_remove() {
+    public void filterAdd_cart_remove() throws InterruptedException {
         Select sort = new Select(wait.until(ExpectedConditions.elementToBeClickable(By.className("product_sort_container"))));
         sort.selectByVisibleText("Name (Z to A)");
 
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[contains(@id,'add')])[1]"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[contains(@id,'add')])[2]"))).click();
+        List<WebElement> names = driver.findElements(By.className("inventory_item_name"));
+        for(int i = 0; i < names.size()-1; i++){
+            String current = names.get(i).getText();
+            String next = names.get(i+1).getText();
+            Assert.assertTrue(current.compareTo(next) > 0);
+        }
 
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-test.allthethings()-t-shirt-(red)"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-sauce-labs-fleece-jacket"))).click();
+Thread.sleep(1000);
         driver.findElement(By.className("shopping_cart_link")).click();
+Thread.sleep(1000);
+        List<WebElement> items = driver.findElements(By.className("cart_item"));
+        int number = items.size();
 
-        List<WebElement> items = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("inventory_item_name")));
-        Assert.assertEquals(items.size(), 2);
+        Assert.assertEquals(number, 2);
 
-        driver.findElement(By.xpath("(//button[contains(@id,'remove')])[1]")).click();
-        driver.findElement(By.xpath("(//button[contains(@id,'remove')])[2]")).click();
+        driver.findElement(By.id("remove-test.allthethings()-t-shirt-(red)")).click();
+        driver.findElement(By.id("remove-sauce-labs-fleece-jacket")).click();
 
-        Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
+        Assert.assertEquals(driver.findElements(By.className("cart_item")).size(), 0);
     }
 
     @Test(priority = 6)
@@ -152,41 +170,44 @@ public class Home_Cart_Integration {
 
         driver.findElement(By.id("back-to-products")).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-sauce-labs-backpack"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-sauce-labs-bike-light"))).click();
 
         driver.findElement(By.className("shopping_cart_link")).click();
 
-        List<WebElement> cartItems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("inventory_item_name")));
+        List<WebElement> cartItems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("cart_item")));
         Assert.assertEquals(cartItems.size(), 2);
 
-        driver.findElement(By.xpath("(//button[contains(@id,'remove')])[1]")).click();
-        driver.findElement(By.xpath("(//button[contains(@id,'remove')])[2]")).click();
+        driver.findElement(By.id("remove-sauce-labs-bike-light")).click();
+        driver.findElement(By.id("remove-sauce-labs-fleece-jacket")).click();
 
-        Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
+        Assert.assertEquals(driver.findElements(By.className("cart_item")).size(), 0);
     }
 
     @Test(priority = 7)
-    public void firstAndLast_cart_remove() {
-        WebElement first = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='inventory_item_name'])[1]")));
+    public void firstAndLast_cart_remove() throws InterruptedException {
+        WebElement first = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"item_4_title_link\"]/div")));
         first.click();
-        driver.findElement(By.xpath("//button[contains(@id,'add')]")).click();
+        driver.findElement(By.id("add-to-cart")).click();
 
         driver.findElement(By.id("back-to-products")).click();
+        Thread.sleep(1000);
 
         List<WebElement> items = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("inventory_item_name")));
         WebElement last = items.get(items.size() - 1);
         last.click();
-        driver.findElement(By.xpath("//button[contains(@id,'add')]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.id("add-to-cart")).click();
 
         driver.findElement(By.className("shopping_cart_link")).click();
-
-        List<WebElement> cartItems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("inventory_item_name")));
+Thread.sleep(1000);
+        List<WebElement> cartItems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("cart_item")));
         Assert.assertEquals(cartItems.size(), 2);
 
-        driver.findElement(By.xpath("(//button[contains(@id,'remove')])[1]")).click();
-        driver.findElement(By.xpath("(//button[contains(@id,'remove')])[2]")).click();
+        driver.findElement(By.id("remove-sauce-labs-backpack")).click();
+        driver.findElement(By.id("remove-test.allthethings()-t-shirt-(red)")).click();
+        Thread.sleep(1000);
 
-        Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
+        Assert.assertEquals(driver.findElements(By.className("cart_item")).size(), 0);
     }
 
     @Test(priority = 8)
@@ -194,22 +215,22 @@ public class Home_Cart_Integration {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-sauce-labs-fleece-jacket"))).click();
         driver.findElement(By.className("shopping_cart_link")).click();
 
-        List<WebElement> cartItems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("inventory_item_name")));
+        List<WebElement> cartItems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("cart_item")));
         Assert.assertEquals(cartItems.size(), 1);
 
         driver.findElement(By.id("remove-sauce-labs-fleece-jacket")).click();
-        Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
+        Assert.assertEquals(driver.findElements(By.className("cart_item")).size(), 0);
     }
 
-    @Test(priority = 10)
+    @Test(priority = 9)
     public void addTestAllTheThings_cart_remove() {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("add-to-cart-test.allthethings()-t-shirt-(red)"))).click();
         driver.findElement(By.className("shopping_cart_link")).click();
 
-        Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 1);
+        Assert.assertEquals(driver.findElements(By.className("cart_item")).size(), 1);
 
         driver.findElement(By.id("remove-test.allthethings()-t-shirt-(red)")).click();
-        Assert.assertEquals(driver.findElements(By.className("inventory_item_name")).size(), 0);
+        Assert.assertEquals(driver.findElements(By.className("cart_item")).size(), 0);
     }
 
     @AfterMethod
