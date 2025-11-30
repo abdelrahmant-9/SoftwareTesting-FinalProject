@@ -1,97 +1,517 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+<testng-results ignored="0" total="23" passed="18" failed="5" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-11-30T00:59:22 EET" name="Default Suite" finished-at="2025-11-30T01:00:05 EET" duration-ms="43310">
+  <suite started-at="2025-11-30T01:12:38 EET" name="Default Suite" finished-at="2025-11-30T01:16:33 EET" duration-ms="234850">
     <groups>
     </groups>
-    <test started-at="2025-11-30T00:59:22 EET" name="SwagLabs-Automation" finished-at="2025-11-30T01:00:05 EET" duration-ms="43310">
-      <class name="integration.Cart.StandardUser">
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:22 EET" name="openBrowser" finished-at="2025-11-30T00:59:27 EET" duration-ms="5071" status="PASS">
+    <test started-at="2025-11-30T01:12:38 EET" name="SwagLabs-Automation" finished-at="2025-11-30T01:16:33 EET" duration-ms="234850">
+      <class name="integration.SideBar.Standard_user">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:12:38 EET" name="openBrowser" finished-at="2025-11-30T01:12:43 EET" duration-ms="5243" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="AddSingleItemToCart()[pri:1, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:27 EET" name="AddSingleItemToCart" finished-at="2025-11-30T00:59:27 EET" duration-ms="400" status="PASS">
+        <test-method signature="AboutCheckOut()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:12:43 EET" name="AboutCheckOut" finished-at="2025-11-30T01:12:49 EET" duration-ms="6309" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- AddSingleItemToCart -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:27 EET" name="closeBrowser" finished-at="2025-11-30T00:59:28 EET" duration-ms="755" status="PASS">
+        </test-method> <!-- AboutCheckOut -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:12:49 EET" name="closeBrowser" finished-at="2025-11-30T01:12:51 EET" duration-ms="1289" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:28 EET" name="openBrowser" finished-at="2025-11-30T00:59:32 EET" duration-ms="4189" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:12:51 EET" name="openBrowser" finished-at="2025-11-30T01:12:55 EET" duration-ms="4625" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="AddMultipleItemsToCart()[pri:2, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:32 EET" name="AddMultipleItemsToCart" finished-at="2025-11-30T00:59:33 EET" duration-ms="652" status="PASS">
+        <test-method signature="AboutHome()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:12:55 EET" name="AboutHome" finished-at="2025-11-30T01:13:00 EET" duration-ms="5179" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- AddMultipleItemsToCart -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:33 EET" name="closeBrowser" finished-at="2025-11-30T00:59:34 EET" duration-ms="764" status="PASS">
+        </test-method> <!-- AboutHome -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:00 EET" name="closeBrowser" finished-at="2025-11-30T01:13:02 EET" duration-ms="1181" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:34 EET" name="openBrowser" finished-at="2025-11-30T00:59:40 EET" duration-ms="6418" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:02 EET" name="openBrowser" finished-at="2025-11-30T01:13:06 EET" duration-ms="4250" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="RemoveItemFromCart()[pri:3, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:40 EET" name="RemoveItemFromCart" finished-at="2025-11-30T00:59:41 EET" duration-ms="517" status="PASS">
+        <test-method signature="AboutOverView()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:06 EET" name="AboutOverView" finished-at="2025-11-30T01:13:12 EET" duration-ms="5927" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- RemoveItemFromCart -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:41 EET" name="closeBrowser" finished-at="2025-11-30T00:59:41 EET" duration-ms="774" status="PASS">
+        </test-method> <!-- AboutOverView -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:12 EET" name="closeBrowser" finished-at="2025-11-30T01:13:14 EET" duration-ms="1730" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:41 EET" name="openBrowser" finished-at="2025-11-30T00:59:46 EET" duration-ms="4086" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:14 EET" name="openBrowser" finished-at="2025-11-30T01:13:20 EET" duration-ms="6724" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="CartBadgeCount()[pri:4, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:46 EET" name="CartBadgeCount" finished-at="2025-11-30T00:59:46 EET" duration-ms="339" status="PASS">
+        <test-method signature="AboutProduct()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:20 EET" name="AboutProduct" finished-at="2025-11-30T01:13:25 EET" duration-ms="5213" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CartBadgeCount -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:46 EET" name="closeBrowser" finished-at="2025-11-30T00:59:47 EET" duration-ms="754" status="PASS">
+        </test-method> <!-- AboutProduct -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:25 EET" name="closeBrowser" finished-at="2025-11-30T01:13:27 EET" duration-ms="1706" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:47 EET" name="openBrowser" finished-at="2025-11-30T00:59:51 EET" duration-ms="4357" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:27 EET" name="openBrowser" finished-at="2025-11-30T01:13:31 EET" duration-ms="4158" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="GoToCheckoutFromCart()[pri:5, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:51 EET" name="GoToCheckoutFromCart" finished-at="2025-11-30T00:59:52 EET" duration-ms="524" status="PASS">
+        <test-method signature="Aboutcart()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:31 EET" name="Aboutcart" finished-at="2025-11-30T01:13:38 EET" duration-ms="6933" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- GoToCheckoutFromCart -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:52 EET" name="closeBrowser" finished-at="2025-11-30T00:59:52 EET" duration-ms="796" status="PASS">
+        </test-method> <!-- Aboutcart -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:38 EET" name="closeBrowser" finished-at="2025-11-30T01:13:40 EET" duration-ms="1215" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:52 EET" name="openBrowser" finished-at="2025-11-30T00:59:57 EET" duration-ms="4156" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:40 EET" name="openBrowser" finished-at="2025-11-30T01:13:44 EET" duration-ms="4221" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="ContinueShoppingFromCart()[pri:6, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:57 EET" name="ContinueShoppingFromCart" finished-at="2025-11-30T00:59:57 EET" duration-ms="466" status="PASS">
+        <test-method signature="AllItemsCart()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:44 EET" name="AllItemsCart" finished-at="2025-11-30T01:13:45 EET" duration-ms="1237" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ContinueShoppingFromCart -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:57 EET" name="closeBrowser" finished-at="2025-11-30T00:59:58 EET" duration-ms="762" status="PASS">
+        </test-method> <!-- AllItemsCart -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:45 EET" name="closeBrowser" finished-at="2025-11-30T01:13:46 EET" duration-ms="1130" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T00:59:58 EET" name="openBrowser" finished-at="2025-11-30T01:00:04 EET" duration-ms="6684" status="PASS">
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:46 EET" name="openBrowser" finished-at="2025-11-30T01:13:50 EET" duration-ms="4168" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openBrowser -->
-        <test-method signature="CartIsEmptyInitially()[pri:7, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T01:00:04 EET" name="CartIsEmptyInitially" finished-at="2025-11-30T01:00:04 EET" duration-ms="27" status="PASS">
+        <test-method signature="AllItemsCheckOut()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:50 EET" name="AllItemsCheckOut" finished-at="2025-11-30T01:13:52 EET" duration-ms="1359" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CartIsEmptyInitially -->
-        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.Cart.StandardUser@79e2c065]" started-at="2025-11-30T01:00:04 EET" name="closeBrowser" finished-at="2025-11-30T01:00:05 EET" duration-ms="761" status="PASS">
+        </test-method> <!-- AllItemsCheckOut -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:52 EET" name="closeBrowser" finished-at="2025-11-30T01:13:53 EET" duration-ms="1173" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowser -->
-      </class> <!-- integration.Cart.StandardUser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:53 EET" name="openBrowser" finished-at="2025-11-30T01:13:59 EET" duration-ms="6457" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="AllItemsHome()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:13:59 EET" name="AllItemsHome" finished-at="2025-11-30T01:14:01 EET" duration-ms="1251" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AllItemsHome -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:01 EET" name="closeBrowser" finished-at="2025-11-30T01:14:02 EET" duration-ms="1140" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:02 EET" name="openBrowser" finished-at="2025-11-30T01:14:06 EET" duration-ms="4142" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="AllItemsOverView()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:06 EET" name="AllItemsOverView" finished-at="2025-11-30T01:14:08 EET" duration-ms="1853" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AllItemsOverView -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:08 EET" name="closeBrowser" finished-at="2025-11-30T01:14:09 EET" duration-ms="1138" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:09 EET" name="openBrowser" finished-at="2025-11-30T01:14:13 EET" duration-ms="4114" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="AllItemsProduct()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:13 EET" name="AllItemsProduct" finished-at="2025-11-30T01:14:14 EET" duration-ms="1282" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AllItemsProduct -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:14 EET" name="closeBrowser" finished-at="2025-11-30T01:14:15 EET" duration-ms="1140" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:15 EET" name="openBrowser" finished-at="2025-11-30T01:14:19 EET" duration-ms="4067" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="LogOutCart()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:19 EET" name="LogOutCart" finished-at="2025-11-30T01:14:21 EET" duration-ms="1396" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogOutCart -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:21 EET" name="closeBrowser" finished-at="2025-11-30T01:14:22 EET" duration-ms="1128" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:22 EET" name="openBrowser" finished-at="2025-11-30T01:14:28 EET" duration-ms="6346" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="LogOutCheckout()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:28 EET" name="LogOutCheckout" finished-at="2025-11-30T01:14:30 EET" duration-ms="1471" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogOutCheckout -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:30 EET" name="closeBrowser" finished-at="2025-11-30T01:14:31 EET" duration-ms="1120" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:31 EET" name="openBrowser" finished-at="2025-11-30T01:14:56 EET" duration-ms="24900" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="LogOutHome()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:56 EET" name="LogOutHome" finished-at="2025-11-30T01:14:57 EET" duration-ms="1299" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogOutHome -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:57 EET" name="closeBrowser" finished-at="2025-11-30T01:14:58 EET" duration-ms="1115" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:14:58 EET" name="openBrowser" finished-at="2025-11-30T01:15:02 EET" duration-ms="4064" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="LogOutOverView()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:02 EET" name="LogOutOverView" finished-at="2025-11-30T01:15:04 EET" duration-ms="2034" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogOutOverView -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:04 EET" name="closeBrowser" finished-at="2025-11-30T01:15:05 EET" duration-ms="1121" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:05 EET" name="openBrowser" finished-at="2025-11-30T01:15:10 EET" duration-ms="4485" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="LogOutProduct()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:10 EET" name="LogOutProduct" finished-at="2025-11-30T01:15:11 EET" duration-ms="1236" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LogOutProduct -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:11 EET" name="closeBrowser" finished-at="2025-11-30T01:15:12 EET" duration-ms="1132" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:12 EET" name="openBrowser" finished-at="2025-11-30T01:15:19 EET" duration-ms="6495" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="LoginAfterLogout()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:19 EET" name="LoginAfterLogout" finished-at="2025-11-30T01:15:21 EET" duration-ms="1770" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAfterLogout -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:21 EET" name="closeBrowser" finished-at="2025-11-30T01:15:22 EET" duration-ms="1140" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:22 EET" name="openBrowser" finished-at="2025-11-30T01:15:26 EET" duration-ms="4130" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="LoginAfterLogoutDifferentUser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:26 EET" name="LoginAfterLogoutDifferentUser" finished-at="2025-11-30T01:15:28 EET" duration-ms="1728" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [0] but found [2]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [0] but found [2]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at org.testng.Assert.assertEquals(Assert.java:666)
+at integration.SideBar.Standard_user.LoginAfterLogoutDifferentUser(Standard_user.java:115)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAfterLogoutDifferentUser -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:28 EET" name="closeBrowser" finished-at="2025-11-30T01:15:29 EET" duration-ms="1138" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:29 EET" name="openBrowser" finished-at="2025-11-30T01:15:33 EET" duration-ms="4144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="ResetAfterAddProduct()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:33 EET" name="ResetAfterAddProduct" finished-at="2025-11-30T01:15:35 EET" duration-ms="2180" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [Add to cart] but found [Remove]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [Add to cart] but found [Remove]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at org.testng.Assert.assertEquals(Assert.java:666)
+at integration.SideBar.Standard_user.ResetAfterAddProduct(Standard_user.java:372)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ResetAfterAddProduct -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:35 EET" name="closeBrowser" finished-at="2025-11-30T01:15:36 EET" duration-ms="1118" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:36 EET" name="openBrowser" finished-at="2025-11-30T01:15:40 EET" duration-ms="4215" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="ResetCheckout()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:40 EET" name="ResetCheckout" finished-at="2025-11-30T01:15:42 EET" duration-ms="1526" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [] but found [mohamed]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [] but found [mohamed]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at org.testng.Assert.assertEquals(Assert.java:666)
+at integration.SideBar.Standard_user.ResetCheckout(Standard_user.java:238)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ResetCheckout -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:42 EET" name="closeBrowser" finished-at="2025-11-30T01:15:43 EET" duration-ms="1133" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:43 EET" name="openBrowser" finished-at="2025-11-30T01:15:49 EET" duration-ms="6301" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="ResetHome()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:49 EET" name="ResetHome" finished-at="2025-11-30T01:15:51 EET" duration-ms="1416" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [Add to cart] but found [Remove]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [Add to cart] but found [Remove]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at org.testng.Assert.assertEquals(Assert.java:666)
+at integration.SideBar.Standard_user.ResetHome(Standard_user.java:139)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ResetHome -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:51 EET" name="closeBrowser" finished-at="2025-11-30T01:15:52 EET" duration-ms="1135" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:52 EET" name="openBrowser" finished-at="2025-11-30T01:15:56 EET" duration-ms="4192" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="ResetOverView()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:56 EET" name="ResetOverView" finished-at="2025-11-30T01:15:58 EET" duration-ms="2046" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ResetOverView -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:58 EET" name="closeBrowser" finished-at="2025-11-30T01:15:59 EET" duration-ms="1139" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:15:59 EET" name="openBrowser" finished-at="2025-11-30T01:16:03 EET" duration-ms="4144" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="ResetProductBefor()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:16:03 EET" name="ResetProductBefor" finished-at="2025-11-30T01:16:05 EET" duration-ms="1508" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ResetProductBefor -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:16:05 EET" name="closeBrowser" finished-at="2025-11-30T01:16:06 EET" duration-ms="1134" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+        <test-method is-config="true" signature="openBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:16:06 EET" name="openBrowser" finished-at="2025-11-30T01:16:10 EET" duration-ms="4123" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowser -->
+        <test-method signature="Resetcart()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:16:10 EET" name="Resetcart" finished-at="2025-11-30T01:16:31 EET" duration-ms="21337" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: //*[@id="shopping_cart_container"]/a/span (tried for 20 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //*[@id="shopping_cart_container"]/a/span (tried for 20 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+at integration.SideBar.Standard_user.Resetcart(Standard_user.java:189)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+at org.testng.TestRunner.privateRun(TestRunner.java:741)
+at org.testng.TestRunner.run(TestRunner.java:616)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at com.intellij.rt.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:65)
+at com.intellij.rt.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:105)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="shopping_cart_container"]/a/span"}
+  (Session info: chrome=142.0.7444.176)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.26.0', revision: '8ccf0219d7'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '25'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [519781d9cca8718c92b82250bc2e6673, findElement {using=xpath, value=//*[@id="shopping_cart_container"]/a/span}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 142.0.7444.176, chrome: {chromedriverVersion: 142.0.7444.175 (302067f14a4..., userDataDir: C:\Users\SOFTLA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62791}, goog:processID: 43572, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:62791/devtoo..., se:cdpVersion: 142.0.7444.176, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 519781d9cca8718c92b82250bc2e6673
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+... 26 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Resetcart -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:integration.SideBar.Standard_user@74fe5c40]" started-at="2025-11-30T01:16:31 EET" name="closeBrowser" finished-at="2025-11-30T01:16:33 EET" duration-ms="1152" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- integration.SideBar.Standard_user -->
     </test> <!-- SwagLabs-Automation -->
   </suite> <!-- Default Suite -->
 </testng-results>
