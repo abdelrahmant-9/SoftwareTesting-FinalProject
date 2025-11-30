@@ -80,9 +80,9 @@ public class E2E_Final {
     @Test(groups = "happy1",priority = 2)
     public void ViewProduct(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement Jacket_Befor =   driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div"));
-        String TBefore = Jacket_Befor.getText();
-        Jacket_Befor.click();
+        WebElement Jacket_Before =   driver.findElement(By.xpath("//*[@id=\"item_5_title_link\"]/div"));
+        String TBefore = Jacket_Before.getText();
+        Jacket_Before.click();
         WebElement Jacket_After = wait.until(ExpectedConditions.visibilityOfElementLocated(By.
                 xpath("//*[@id=\"inventory_item_container\"]/div/div/div[2]/div[1]")));
         String TAfter = Jacket_After.getText();

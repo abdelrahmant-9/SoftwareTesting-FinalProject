@@ -1,26 +1,25 @@
-package OldWork.SideBar;
+package Unit.SideBar;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.*;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Standar_user {
+public class problem_user {
     private boolean IsElementPresent(By by) {
         try {
             driver.findElement(by);
@@ -49,7 +48,7 @@ public class Standar_user {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.navigate().to("https://www.saucedemo.com/");
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
+        driver.findElement(By.id("user-name")).sendKeys("problem_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
     }
@@ -240,9 +239,8 @@ public class Standar_user {
         Assert.assertEquals(lName,"");
         Assert.assertEquals(Pcode,"");
     }
-
     @Test
-    public void ResetProductState(){
+    public void ReserProductState(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         driver.findElement(By.xpath("//*[@id=\"item_0_title_link\"]/div")).click();
         driver.findElement(By.id("add-to-cart")).click();
@@ -253,6 +251,7 @@ public class Standar_user {
         WebElement b1 = driver.findElement(By.id("remove"));
         Assert.assertEquals(b1.getText(),"Add to cart");
     }
+
     @Test
     public void CheckLogout(){
         driver.findElement(By.id("react-burger-menu-btn")).click();
@@ -264,10 +263,10 @@ public class Standar_user {
         Assert.assertEquals(password.getText(),"");
     }
 
+
     @AfterMethod
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(2000);
         driver.close();
     }
 }
-
