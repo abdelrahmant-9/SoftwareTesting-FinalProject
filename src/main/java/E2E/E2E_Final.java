@@ -373,7 +373,7 @@ public class E2E_Final {
          try{
             Assert.assertEquals(checkout_URL,"https://www.saucedemo.com/checkout-complete.html");
         }catch (AssertionError e){
-            System.out.println("fields can't be empty please enter firts and last name and postal code  " +
+            System.out.println("fields can't be empty please enter First and last name and postal code  " +
                      "\n error case 20 ");
         }
         driver.findElement(By.className("shopping_cart_link")).click();
