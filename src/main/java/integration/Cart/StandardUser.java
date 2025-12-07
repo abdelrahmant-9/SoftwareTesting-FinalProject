@@ -51,11 +51,6 @@ public class StandardUser {
         driver.findElement(By.id("login-button")).click();
     }
 
-    // @BeforeMethod
-    // public void smallPause() throws InterruptedException {
-    //     Thread.sleep(500);
-    // }
-
     @Test(priority = 1)
     public void AddSingleItemToCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
