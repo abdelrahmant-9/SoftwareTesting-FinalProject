@@ -56,14 +56,10 @@ public class Home_Cart_Integration {
     public void home_firstItem_cart_remove() {
          wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"item_4_title_link\"]/div")));
         String name = driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).getText();
-
         driver.findElement(By.xpath("//*[@id=\"item_4_title_link\"]/div")).click();
-
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@id,'add-to-cart')]"))).click();
-
         driver.findElement(By.className("shopping_cart_link")).click();
         Assert.assertEquals(driver.findElement(By.className("inventory_item_name")).getText(), name);
-
         driver.findElement(By.xpath("//button[contains(@id,'remove')]")).click();
 
         List<WebElement> itemsInCart = driver.findElements(By.className("inventory_item_name"));

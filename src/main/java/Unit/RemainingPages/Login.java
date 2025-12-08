@@ -33,15 +33,11 @@ public class Login {
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
         prefs.put("profile.password_manager_leak_detection", false);
-
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("--disable-save-password-bubble");
         options.addArguments("--disable-notifications");
-
         driver = new ChromeDriver(options);
-
         driver.manage().window().maximize();
-
         driver.navigate().to("https://www.saucedemo.com/");
     }
 

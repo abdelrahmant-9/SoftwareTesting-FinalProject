@@ -20,7 +20,6 @@ import java.util.Map;
 
 public class E2E_Final {
     WebDriver driver;
-
     @BeforeClass
     public void  openBrowser() throws InterruptedException {
         ChromeOptions options = new ChromeOptions();
@@ -55,10 +54,8 @@ public class E2E_Final {
     public void login(String user, String pass){
         driver.findElement(By.id("user-name")).clear();
         driver.findElement(By.id("user-name")).sendKeys(user);
-
         driver.findElement(By.id("password")).clear();
         driver.findElement(By.id("password")).sendKeys(pass);
-
         driver.findElement(By.id("login-button")).click();
     }
 
@@ -181,7 +178,7 @@ public class E2E_Final {
             HomeBack.click();
             Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
     }
-
+    // senario with empty cart that fails but handles by try and catch
     @Test(priority = 14, groups = "sad1" , dependsOnGroups = "happy1")
     public void wrong_process() throws InterruptedException {
         driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
@@ -211,6 +208,7 @@ public class E2E_Final {
         WebElement finishbutton = driver.findElement(By.id("finish"));
         finishbutton.click();
     }
+    // test filtering the products and then enter empty fields in the checkout
     @Test(priority = 15 , groups = "sad2",dependsOnGroups = "sad1")
     public void wrong_process2() throws InterruptedException {
         login("standard_user", "secret_sauce");
@@ -238,6 +236,7 @@ public class E2E_Final {
         WebElement finishbutton = driver.findElement(By.id("finish"));
         finishbutton.click();
     }
+    //enter spaces in the fields of check out
     @Test(priority = 16,groups = "sad3",dependsOnGroups = "sad2")
     public void wrong_process3() throws InterruptedException {
         login("standard_user", "secret_sauce");
@@ -416,14 +415,11 @@ public class E2E_Final {
 
     @AfterMethod(alwaysRun = true)
     public void afterEach(Method method) {
-
         Test t = method.getAnnotation(Test.class);
         if (t == null) return;
-
         for (String g : t.groups()) {
             if (g.equals("happy1")) return;
         }
-
         resetAppState();
     }
 
