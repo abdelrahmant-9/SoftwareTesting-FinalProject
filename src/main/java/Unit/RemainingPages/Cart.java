@@ -16,6 +16,22 @@ public class Cart {
 
     WebDriver driver;
 
+    public void clickWithDelay(By locator) throws InterruptedException {
+        driver.findElement(locator).click();
+        Thread.sleep(500);
+    }
+
+    public void sendKeysWithDelay(By locator, String text) throws InterruptedException {
+        for (char c : text.toCharArray()) {
+            driver.findElement(locator).sendKeys(String.valueOf(c));
+            Thread.sleep(50);
+        }
+    }
+
+    public void shortPause() throws InterruptedException {
+        Thread.sleep(5000);
+    }
+
     @BeforeClass
     public void setup() {
         ChromeOptions options = new ChromeOptions();
@@ -129,21 +145,5 @@ public class Cart {
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(2000);
         driver.quit();
-    }
-
-    public void clickWithDelay(By locator) throws InterruptedException {
-        driver.findElement(locator).click();
-        Thread.sleep(500);
-    }
-
-    public void sendKeysWithDelay(By locator, String text) throws InterruptedException {
-        for (char c : text.toCharArray()) {
-            driver.findElement(locator).sendKeys(String.valueOf(c));
-            Thread.sleep(50);
-        }
-    }
-
-    public void shortPause() throws InterruptedException {
-        Thread.sleep(5000);
     }
 }
