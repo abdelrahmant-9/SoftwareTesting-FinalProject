@@ -242,6 +242,8 @@ public class Integration_Testing {
 
         driver.findElement(By.id("finish")).click();
         driver.findElement(By.className("shopping_cart_link")).click();
+        WebElement count = driver.findElement(By.className("shopping_cart_link"));
+        Assert.assertEquals(count.getText(),"");
     }
 
 
