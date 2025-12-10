@@ -29,7 +29,7 @@ public class Cart {
     }
 
     public void shortPause() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(1000);
     }
 
     @BeforeClass
